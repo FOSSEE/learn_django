@@ -13,8 +13,8 @@ Slide 2 [00:20 | 00:28]
 In this tutorial, we will learn about;
   - What is a web application
   - What is a web framework
-  - Why to use Django
-  - What is virtual
+  - Why use Django
+  - What is virtual environment
   - Django installation
 
 Slide 3 [00:15 | 00:53]
@@ -31,7 +31,7 @@ Slide 4 [00:12 | 01:05]
 **Pre-requisites**
 
 In order to follow this tutorial, you need;
-  - Knowledge in Object Oriented Python Programming
+  - Knowledge of Object Oriented Python Programming
   - If not, see the Python tutorials on http://spoken-tutorial.org
 	
 Slide 5 [00:10 | 01:15]
@@ -40,7 +40,7 @@ Slide 5 [00:10 | 01:15]
 **What is Django**
   - Free and open source
   - Web application framework 
-  - written in Python
+  - Written in Python
   - Very popular
 
 [Image of Django logo]
@@ -54,11 +54,11 @@ Slide 6 [00:35 | 01:50]
 ** Narration for this slide **	
   - An application stored on a remote computer i.e. server
   - A server can be accessed by a user through a web browser
-  - A user communicates with the server by sending a 'request'
+  - The browser communicates with the server by sending a 'request'
   - The web application carries out actions as per the request
-  - It has 'database' to store and manipulate data
-  - It sends a response to the user
-  - The user's browser then displays this response
+  - It has a 'database' to store and manipulate data
+  - It sends a 'response' to the user
+  - The user's browser then displays this response suitably formatted.
 
 Slide 7 [00:16 | 02:06]
 ------------------
@@ -66,7 +66,7 @@ Slide 7 [00:16 | 02:06]
 **What is a web Framework**
   - Easy to develop web apps
   - Provides
-    - Interface to DB
+    - Interface to Database
     - Authentication (Login system)
     - Templating engine (HTML rendering)
     - Forms
@@ -120,9 +120,9 @@ Demonstration [01:20 | 04:14]
 
 **Working with virtual environments**
   - Creating a virtual environment in Python 3
-    - *python3 -m venv ./myapp_env*
+    - *python3 -m venv myapp_env*
   - Activate the environment
-    - *source ./myapp_env/bin/activate*
+    - *source myapp_env/bin/activate*
     - Shell prompt will be *(myapp_env)user1:~$*
   
 Demonstration [01:26 | 05:40]
@@ -137,7 +137,7 @@ Demonstration [01:26 | 05:40]
   - Deactivate the environment
     - deactivate
   - You can also delete the virtual environment by deleting it's directory
-    - *rm -rf ./myapp_env*
+    - *rm -rf myapp_env*
     
 Slide 13 [00:15 | 05:55]
 ---------------   
