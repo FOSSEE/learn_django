@@ -5,7 +5,7 @@ Slide 1 [00:08 | 00:08]
 -------------
 **Introduction to Django**
 
-Slide 2 [00:13 | 00:21]
+Slide 2 [00:20 | 00:28]
 --------------
 
 **Learning Objectives**
@@ -14,16 +14,18 @@ In this tutorial, we will learn about;
   - What is a web application
   - What is a web framework
   - Why to use Django
+  - What is virtual
   - Django installation
 
-Slide 3 [00:10 | 00:31]
+Slide 3 [00:15 | 00:53]
 ---------------
 
 **System Requirements**
   - Ubuntu 16.10
   - Python 3.5 or higher version
+  - python3.4-venv (Install using *apt-get install python3.4-venv*)
 	
-Slide 4 [00:12 | 00:43]
+Slide 4 [00:12 | 01:05]
 ---------------
 
 **Pre-requisites**
@@ -32,7 +34,7 @@ In order to follow this tutorial, you need;
   - Knowledge in Python
   - If not, see the Python tutorials on http://spoken-tutorial.org
 	
-Slide 5 [00:09 | 00:52]
+Slide 5 [00:10 | 01:15]
 ----------------
 
 **What is Django**
@@ -43,7 +45,7 @@ Slide 5 [00:09 | 00:52]
 
 [Image of Django logo]
 
-Slide 6 [00:33 | 01:16]
+Slide 6 [00:35 | 01:50]
 ----------------
 
 **What is a web application**
@@ -58,7 +60,7 @@ Slide 6 [00:33 | 01:16]
   - It sends a response to the user
   - The user's browser then displays this response
 
-Slide 7 [00:16 | 01:32]
+Slide 7 [00:16 | 02:06]
 ------------------
 
 **What is a web Framework**
@@ -69,7 +71,7 @@ Slide 7 [00:16 | 01:32]
     - Templating engine (HTML rendering)
     - Forms
 		
-Slide 8 [00:18 | 01:50]
+Slide 8 [00:18 | 02:24]
 -------------------
 
 **Why Django**
@@ -81,7 +83,7 @@ Slide 8 [00:18 | 01:50]
   - provides a user interface for administrative activities
 
 
-Slide 9 [00:07 | 01:57]
+Slide 9 [00:07 | 02:31]
 --------------
 
 **Where is Django used**
@@ -89,7 +91,7 @@ Slide 9 [00:07 | 01:57]
   - Pinterest - A social image and web resource sharing site
     - [Add Screenshot]
 
-Slide 11 [00:04 | 02:01]
+Slide 11 [00:05 | 02:36]
 --------------
 
 **Where is Django used**
@@ -97,7 +99,7 @@ Slide 11 [00:04 | 02:01]
   - Instagram - A social photo sharing site
     - [Add Screenshot]
 
-Slide 12 [00:04 | 02:05]
+Slide 12 [00:05 | 02:41]
 --------------
 
 **Where is Django used**
@@ -105,3 +107,41 @@ Slide 12 [00:04 | 02:05]
   - Disqus - A commenting system that can be integrated on any web page
     - [Add Screenshot]
 
+Slide 13 [00:13 | 02:54]
+---------------
+
+**What is virtual environment**
+  - Create 'isolated' environment
+  - Does not require root access
+  - Install Python packages from PyPI
+   
+Demonstration [01:20 | 04:14]
+----------------
+
+**Working with virtual environments**
+  - Creating a virtual environment in Python 3
+    - *python3 -m venv /path-to-env/myapp_env*
+  - Activate the environment
+    - *source /path-to-env/myapp_env/bin/activate*
+    - Shell prompt will be *(myapp_env)user1:~$*
+  
+Demonstration [01:20 | 05:34]
+---------------
+
+**Install Django**
+  - Check if django is installed using;
+    - Command: *python -m django --version*
+    - If not installed then we see "No module named django"
+  - pip install django
+  - Again we check and now we see the django version
+  - Deactivate the environment
+    - deactivate
+    
+Slide 13 [00:15 | 05:49]
+---------------   
+** Assignmenet ** 
+ - Create a new virtual environment.
+ - Activate it.
+ - Install other version of django
+
+ ** Followed by standard concluding slides **[02:15 | 08:04] 
