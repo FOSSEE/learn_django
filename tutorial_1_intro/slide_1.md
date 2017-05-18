@@ -6,49 +6,93 @@ Slide 1
 
 **What is a web application**
 
-Narration: 
-
-When the internet started, websites were simple they contained simple text. As time went by and the web became better, websites were able to display multimedia content. Eventually people could run complete applications on the web with just their browsers.
-
-This was possible by transmitting information from the users to remote computers called servers through the internet. The application was installed and executed on these servers
-
-The server-side application stored all kinds of information using databases, so that it could retrieve, modify or utilise this information at any time.
-
-Gmail, Facebook and even Train ticket booking systems are examples of web applications.
-
 Slide 2
 --------------
 
-**What is a Web Framework**
+**Learning Objectives**
 
-Narration: 
+In this tutorial, we will learn about;
 
-When building a web application, we need to take care of number of things.
-	- How to implement basic security measures like login
-	- How the web application will interact with databases to store information
-	- How will the HTML pages be rendered
-	- and many more
-
-A lot of these situations can be handled by a programmer by coding his own solutions, but that would take a lot of time and effort on his behalf. Web frameworks provide these basic features out-of-the-box.
+	- What is a web application
+	- What is a web framework
+	- Why to use Django
 
 Slide 3
---------------
+---------------
 
-**Why Django should be used**
+**System Requirements**
 
-Narration:
-
-Django is a web framework written using the Python Language. It's robust, easy to start with and has a lot of pre-built features available out of the box for someone who already knows how to develop stuff with Python.
-
-It allows the web developer to have a basic application up and running in reasonable time.
-
-
+	- Ubuntu 16.10
+	- Python 3.5 or higher version
+	
 Slide 4
+---------------
+
+**Pre-requisites**
+
+In order to follow this tutorial, you need;
+	- Familiarity with procedural programming
+	- Familiarity with OOP concepts
+	- Knowledge of coding in Python
+	
+Slide 5
+----------------
+
+**What is Django**
+
+	- Free and open source
+	- Web application framework 
+	- written in Python
+	- Very popular
+
+[Image of Django logo]
+
+Slide 6
+----------------
+
+**What is a web application**
+
+[Block diagram of Web application]
+
+	- A web application is an application that is stored on a remote computer on the internet that can be accessed by a 		user through a web browser
+	- A user communicates with the server by sending a 'request' through a browser
+	- This 'request' contains essential information/data or commands
+	- The web application accepts the 'request'
+	- It carries out actions as per the information provided within the request
+	- It uses a 'database' to as means of storing and manipulating information that may be required for the user in the 		future
+	- The web application can read from, add to, delete from OR update the information in the database
+	- After the web application has completed carrying out actions, it sends a response to the user
+	- The user's browser then displays this response
+
+Slide 7
+------------------
+
+**What is a web Framework**
+
+	- Easy to develop web apps
+	- Provides
+		- Interface to DB
+		- Authentication (Login system)
+		- Templating engine (HTML rendering)
+		- Forms
+		
+Slide 8
+-------------------
+
+**Why Django**
+	- easy to start with
+	- has a lot of pre-built features available out of the box for someone who already knows how to develop stuff with Python.
+	- supports various database backends
+	- supports multilingual websites
+	- provides a user interface for administrative activities
+	- It allows the web developer to have a basic application up and running in reasonable time.
+
+Slide 9
 --------------
 
 **Where is Django used**
 
-Slide 5
+Slide 10
 --------------
 
 **Where is Django used**
@@ -56,7 +100,7 @@ Slide 5
 - Pinterest - A social image and web resource sharing site
     - [Add Screenshot]
 
-Slide 6
+Slide 11
 --------------
 
 **Where is Django used**
@@ -64,7 +108,7 @@ Slide 6
 - Instagram - A social photo sharing site
     - [Add Screenshot]
 
-Slide 7
+Slide 12
 --------------
 
 **Where is Django used**
