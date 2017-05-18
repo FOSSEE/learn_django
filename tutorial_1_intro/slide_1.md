@@ -31,7 +31,7 @@ Slide 4 [00:12 | 01:05]
 **Pre-requisites**
 
 In order to follow this tutorial, you need;
-  - Knowledge in Python
+  - Knowledge in Object Oriented Python Programming
   - If not, see the Python tutorials on http://spoken-tutorial.org
 	
 Slide 5 [00:10 | 01:15]
@@ -120,12 +120,12 @@ Demonstration [01:20 | 04:14]
 
 **Working with virtual environments**
   - Creating a virtual environment in Python 3
-    - *python3 -m venv /path-to-env/myapp_env*
+    - *python3 -m venv ./myapp_env*
   - Activate the environment
-    - *source /path-to-env/myapp_env/bin/activate*
+    - *source ./myapp_env/bin/activate*
     - Shell prompt will be *(myapp_env)user1:~$*
   
-Demonstration [01:20 | 05:34]
+Demonstration [01:26 | 05:40]
 ---------------
 
 **Install Django**
@@ -136,12 +136,14 @@ Demonstration [01:20 | 05:34]
   - Again we check and now we see the django version
   - Deactivate the environment
     - deactivate
+  - You can also delete the virtual environment by deleting it's directory
+    - *rm -rf ./myapp_env*
     
-Slide 13 [00:15 | 05:49]
+Slide 13 [00:15 | 05:55]
 ---------------   
-** Assignmenet ** 
+** Assignment ** 
  - Create a new virtual environment.
  - Activate it.
  - Install other version of django
 
- ** Followed by standard concluding slides **[02:15 | 08:04] 
+ ** Followed by standard concluding slides ** [02:15 | 08:10] 
