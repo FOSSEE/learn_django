@@ -12,7 +12,7 @@ Slide 2 [00:13 | 00:21]
 
 In this tutorial, we will learn to;
   - Create a django model
-  - Database migration
+  - Perform Database migration
   - Use Admin app
 
 Slide 3 [00:13 | 00:34]
@@ -81,17 +81,6 @@ Demonstration [03:00 | 04:54]
 
    - **(Not for narration) Note:  For this demonstration there should explanation about each field **
 
-Slide 6: What is a database migration [00:45| 05:39]
----------------------------------------
-  - A database migration is a technique that allows you to update your database, including
-    - Adding & Removing columns
-    - Altering columns (& the type of data that they can hold)
-    - Adding & Removing tables
-  - Migrations makes such changes easy since;
-    - No need to rebuild the database for every change
-  - Avoids loss of data
-  - Django handles migrations by creating a migration *.py* file
-
 Demonstration [01:00| 06:39]
 --------------------
 - Run python manage.py --help
@@ -108,6 +97,7 @@ Demonstration [01:00| 06:39]
     - *Show command line output for makemigrations and migrate*
     - Observe that a *db.sqlite3* has been created.
     - Check the /blog/migrations/ directory and you will observe that a new file has been created.
+  - We will be revisiting *migrations* in more detail later
 
 Slide 5: What is Django Admin App [00:13| 06:52]
 -------------------------------------------
