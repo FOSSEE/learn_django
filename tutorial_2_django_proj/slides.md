@@ -121,6 +121,9 @@ Demonstration [01:00 | 6:44]
         'django.contrib.messages',
         'django.contrib.staticfiles',
     ]
+   - To stop the server, 
+      - goto the directory where we had run the command python manage.py runserver.
+      - press CRTL and C keys simultaneously.
 
 Slide 13 [00:25 | 07:15]
 ---------------   
