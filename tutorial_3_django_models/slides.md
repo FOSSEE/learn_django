@@ -1,7 +1,39 @@
 Tutorial: Create Django Models
 ===============================
 
-Slide 1: What is a Django Model
+Slide 1 [00:08 | 00:08]
+-------------
+Title Slide: ** Creating Django Models **
+
+Slide 2 [00:13 | 00:21]
+--------------
+
+**Learning Objectives**
+
+In this tutorial, we will learn to;
+  - Create a django model
+  - Database migration
+  - Use Admin app
+
+Slide 3 [00:13 | 00:34]
+---------------
+
+**System Requirements**
+  - Ubuntu 16.10
+  - Python 3.5 or higher version
+  - python3.4-venv
+  
+Slide 4 [00:15 | 00:49]
+---------------
+
+**Pre-requisites**
+
+In order to follow this tutorial, you need to know;
+  - how to create a django project
+  - If not, see the relevant django tutorial on http://spoken-tutorial.org
+
+
+Slide 4: What is a Django Model [00:30 | 01:19]
 --------------------------------------
 
   - Every Django app has one or more models
@@ -12,7 +44,7 @@ Slide 1: What is a Django Model
   - All django models are stored in a models.py
     - models.py represents a Database
 
-Slide 2: Creating Django Models for Blog app
+Slide 5: Creating Django Models for Blog app [00:35 | 01:54]
 -----------------------------------------------
 
   - We will create two tables 'blog' and 'article'
@@ -27,28 +59,29 @@ Slide 2: Creating Django Models for Blog app
     - author
     - body
 
-Demonstration
+Demonstration [03:00 | 04:54]
 ----------------
 
-  - Add the following code to */blog/models.py*
+  - open */blog/models.py* in editor
+  - Type the following code
 
-    # /blog/models.py
-    from django.db import models
+        from django.db import models
+
+        class Blog(models.Model):
+            name = models.CharField(max_length=120)
+            created_on = models.DateTimeField('date created')
 
 
-    class Blog(models.Model):
-        name = models.CharField(max_length=120)
-        created_on = models.DateTimeField('date created')
+        class Article(models.Model):
+            blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+            created_on = models.DateTimeField('date created')
+            title = models.CharField(max_length=120)
+            body = models.TextField()
+            draft = models.BooleanField(default=False)
 
+   - **(Not for narration) Note:  For this demonstration there should explanation about each field **
 
-    class Article(models.Model):
-        blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-        created_on = models.DateTimeField('date created')
-        title = models.CharField(max_length=120)
-        body = models.TextField()
-        draft = models.BooleanField(default=False)
-
-Slide 3: What is a database migration
+Slide 6: What is a database migration [00:45| 05:39]
 ---------------------------------------
   - A database migration is a technique that allows you to update your database, including
     - Adding & Removing columns
@@ -56,15 +89,14 @@ Slide 3: What is a database migration
     - Adding & Removing tables
   - Migrations makes such changes easy since;
     - No need to rebuild the database for every change
-    - Avoids loss of data
+  - Avoids loss of data
   - Django handles migrations by creating a migration *.py* file
-  - **Demonstrate**
-      - Run python manage.py --help
-      - Show the help text for *makemigrations* command
-      - Show the help text for *migrate* command
 
-Demonstration
+Demonstration [01:00| 06:39]
 --------------------
+- Run python manage.py --help
+  - Show the help text for *makemigrations* command
+  - Show the help text for *migrate* command
 
 - Go to the directory containing *manage.py* file
   - Make sure that the environment is active
@@ -77,13 +109,13 @@ Demonstration
     - Observe that a *db.sqlite3* has been created.
     - Check the /blog/migrations/ directory and you will observe that a new file has been created.
 
-Slide 5: What is Django Admin
+Slide 5: What is Django Admin App [00:13| 06:52]
 -------------------------------------------
 
-  - What is the Django Admin
-    - The django admin is a feature that provides an interface for users to Create, Read, Update and Delete database entries
+  - What is the Django Admin App
+    - The django admin app is a feature that provides an interface to Create, Read, Update and Delete model instances
 
-Demonstration: Create a superuser
+Demonstration: Create a superuser [00:55| 07:47]
 ----------------------------------------------
   - Create a superuser to login to the admin interface
     - Run *python manage.py createsuperuser*
@@ -93,7 +125,7 @@ Demonstration: Create a superuser
   - Output: *Superuser created successfully.*
 
 
-Demonstration: Show the Admin interface
+Demonstration: Show the Admin interface [00:45| 08:32]
 ---------------------------------
   - Run the django server with
     - *python manage.py runserver*
@@ -104,7 +136,7 @@ Demonstration: Show the Admin interface
   - You can see the interface
     - [Add Screenshot]
     
-Demonstration: Make the Blog App modifiable through Admin
+Demonstration: Make the Blog App modifiable through Admin [00:45| 08:32]
 -------------------------------------------
   - In order to display the Blog app and it's components in the admin interface, change the */blog/admin.py* file;
 
@@ -115,15 +147,10 @@ Demonstration: Make the Blog App modifiable through Admin
 
     admin.site.register(Blog)
     admin.site.register(Article)
-
-  - Save and exit
-  - Return to the directory with *manage.py* file
-  - Run the django server
-    - *python manage.py runserver*
-  - Open the web browser and go to http://127.0.0.1:8000/admin/
+  - Save
   - Login to the Admin interface
 
-Demonstration: Add a Blog database entry
+Demonstration: Add a Blog database entry [00:40| 09:12]
 -----------------------
   - Click on 'Blog'
   - Click on 'Add Blog'
@@ -137,7 +164,7 @@ Demonstration: Add a Blog database entry
     - You can click on the blog name to view it's details
   - Click on Home (in breadcrumb section)
   
-Demonstration: Add an Article database entry
+Demonstration: Add an Article database entry [00:45| 09:57]
 --------------------------------
   - Click on 'Article'
   - Click on 'Add Article'
@@ -147,7 +174,12 @@ Demonstration: Add an Article database entry
     - create_date
     - author: Select super-username form the list
     - body: Add Article text
+  - Click on Save
   - You will see your new article in the list
     - You can click on the article name to view it's details
-  - Click on Save
  
+ 
+ *** With this we come to the end of the tutorial***
+ ----------------------------------------------------
+ *** Add concluding slides and assignment***
+ -------------------------------------------
