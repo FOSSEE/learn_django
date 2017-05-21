@@ -122,7 +122,7 @@ Demonstration [ 02:30 | 07:57]
 - We will learn about them in later tutorials.
 - Type the following command:
   - django-admin.py startproject demo-project
-- This creates a project directory with all necessory files.
+- This creates a project directory with all the necessary files.
 - cd demo-project
 - Now run:
    - python manage.py runserver
