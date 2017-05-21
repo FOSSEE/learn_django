@@ -128,7 +128,7 @@ Demonstration [ 02:30 | 07:57]
    - python manage.py runserver
 - This may give migrations warning at the start, we ignore them for now.
 - We see that the server is running now.
-- Go to the address shown mostly will be http://127.0.0.1:8000/
+- Go to the address shown, mostly will be http://127.0.0.1:8000/
 - So in a web browser we see the django index page.
 - Go back to the terminal.
 - We can quit the server with CONTROL-C
