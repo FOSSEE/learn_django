@@ -167,6 +167,35 @@ Demonstration: Add an Article database entry [00:45| 09:57]
   - Click on Save
   - You will see your new article in the list
     - You can click on the article name to view it's details
+    
+
+So this is a web application framework.
+Slide 6 [00:30 | 10:27]
+----------------
+
+**What is a web application**
+
+![Block diagram of Web application](https://raw.githubusercontent.com/FOSSEE/learn_django/master/tutorial_1_intro/webapp_diag.png 'Web Application Block diagram')
+** Narration for this slide **	
+  - An application stored on a remote computer i.e. server
+  - A server can be accessed by a user through a web browser
+  - The browser communicates with the server by sending a 'request'
+  - The web application carries out actions as per the request
+  - It has a 'database' to store and manipulate data
+  - It sends a 'response' to the user
+  - The user's browser then displays this response suitably formatted.
+
+Slide 7 [00:13 | 10:40]
+------------------
+
+**What is a web Framework**
+  - Easy to develop web apps
+  - Provides
+    - Interface to Database
+    - Authentication (Login system)
+    - Templating engine (HTML rendering)
+    - Forms
+
  
  
  *** With this we come to the end of the tutorial***
