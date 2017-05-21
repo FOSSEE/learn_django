@@ -134,16 +134,33 @@ Demonstration [01:26 | 05:40]
     - If not installed then we see "No module named django"
   - pip install django
   - Again we check and now we see the django version
-  - Deactivate the environment
-    - deactivate
-  - You can also delete the virtual environment by deleting it's directory
-    - *rm -rf myapp_env*
+
+Demonstration [ 02:00 | 07:40]
+---------------
+- Now we will run few commands to see how django works.
+- We will learn about them in later tutorials.
+- Type the following command:
+  - django-admin.py startproject demo-project
+- This creates a project directory with all necessory files.
+- cd demo-project
+- Now run:
+   - python manage.py runserver
+- This may give migrations warning at the start, we ignore them for now.
+- We see that the server is running now.
+- Go to the address shown mostly will be http://127.0.0.1:8000/
+- So in a web browser we see the django index page.
+- Go back to the terminal.
+- We can quit the server with CONTROL-C
+- Deactivate the environment
+  - deactivate
+- You can also delete the virtual environment by deleting it's directory
+  - *rm -rf myapp_env*
     
-Slide 13 [00:15 | 05:55]
+Slide 13 [00:15 | 07:55]
 ---------------   
 ** Assignment ** 
  - Create a new virtual environment.
  - Activate it.
  - Install other version of django
 
- ** Followed by standard concluding slides ** [02:15 | 08:10] 
+ ** Followed by standard concluding slides ** [00:30 | 08:25] 
