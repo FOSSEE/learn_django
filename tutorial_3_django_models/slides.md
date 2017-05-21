@@ -1,11 +1,12 @@
 Tutorial: Create Django Models
 ===============================
+[Demonstration time: 9 mins 25 secs (0.785 ~ 79%) | Total time: 12 mins]
 
 Slide 1 [00:08 | 00:08]
 -------------
 Title Slide: ** Creating Django Models **
 
-Slide 2 [00:13 | 00:21]
+Slide 2 [00:12 | 00:20]
 --------------
 
 **Learning Objectives**
@@ -15,7 +16,7 @@ In this tutorial, we will learn to;
   - Perform Database migration
   - Use Admin app
 
-Slide 3 [00:13 | 00:34]
+Slide 3 [00:11 | 00:31]
 ---------------
 
 **System Requirements**
@@ -23,7 +24,7 @@ Slide 3 [00:13 | 00:34]
   - Python 3.5 or higher version
   - python3.4-venv
   
-Slide 4 [00:15 | 00:49]
+Slide 4 [00:11 | 00:42]
 ---------------
 
 **Pre-requisites**
@@ -33,7 +34,7 @@ In order to follow this tutorial, you need to know;
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
 
 
-Slide 4: What is a Django Model [00:30 | 01:19]
+Slide 4: What is a Django Model [00:30 | 01:12]
 --------------------------------------
 
   - Every Django app has one or more models
@@ -44,7 +45,7 @@ Slide 4: What is a Django Model [00:30 | 01:19]
   - All django models are stored in a models.py
     - models.py represents a Database
 
-Slide 5: Creating Django Models for Blog app [00:35 | 01:54]
+Slide 5: Creating Django Models for Blog app [00:12 | 01:24]
 -----------------------------------------------
 
   - We will create two tables 'blog' and 'article'
@@ -58,8 +59,10 @@ Slide 5: Creating Django Models for Blog app [00:35 | 01:54]
     - create_date
     - author
     - body
+    
+  - **(Not for narration) Note: Explain this in detail during demonstration**
 
-Demonstration [03:00 | 04:54]
+Demonstration [04:00 | 05:24]
 ----------------
 
   - open */blog/models.py* in editor
@@ -81,7 +84,7 @@ Demonstration [03:00 | 04:54]
 
    - **(Not for narration) Note:  For this demonstration there should explanation about each field **
 
-Demonstration [01:00| 06:39]
+Demonstration [01:00| 06:24]
 --------------------
 - Run python manage.py --help
   - Show the help text for *makemigrations* command
@@ -99,13 +102,13 @@ Demonstration [01:00| 06:39]
     - Check the /blog/migrations/ directory and you will observe that a new file has been created.
   - We will be revisiting *migrations* in more detail later
 
-Slide 5: What is Django Admin App [00:13| 06:52]
+Slide 5: What is Django Admin App [00:07| 06:31]
 -------------------------------------------
 
   - What is the Django Admin App
     - The django admin app is a feature that provides an interface to Create, Read, Update and Delete model instances
 
-Demonstration: Create a superuser [00:55| 07:47]
+Demonstration: Create a superuser [00:55| 07:26]
 ----------------------------------------------
   - Create a superuser to login to the admin interface
     - Run *python manage.py createsuperuser*
@@ -115,7 +118,7 @@ Demonstration: Create a superuser [00:55| 07:47]
   - Output: *Superuser created successfully.*
 
 
-Demonstration: Show the Admin interface [00:45| 08:32]
+Demonstration: Show the Admin interface [00:45| 08:11]
 ---------------------------------
   - Run the django server with
     - *python manage.py runserver*
@@ -126,7 +129,7 @@ Demonstration: Show the Admin interface [00:45| 08:32]
   - You can see the interface
     - [Add Screenshot]
     
-Demonstration: Make the Blog App modifiable through Admin [00:45| 08:32]
+Demonstration: Make the Blog App modifiable through Admin [01:10 | 09:21]
 -------------------------------------------
   - In order to display the Blog app and it's components in the admin interface, change the */blog/admin.py* file;
 
@@ -140,7 +143,7 @@ Demonstration: Make the Blog App modifiable through Admin [00:45| 08:32]
   - Save
   - Login to the Admin interface
 
-Demonstration: Add a Blog database entry [00:40| 09:12]
+Demonstration: Add a Blog database entry [00:45| 10:06]
 -----------------------
   - Click on 'Blog'
   - Click on 'Add Blog'
@@ -154,7 +157,7 @@ Demonstration: Add a Blog database entry [00:40| 09:12]
     - You can click on the blog name to view it's details
   - Click on Home (in breadcrumb section)
   
-Demonstration: Add an Article database entry [00:45| 09:57]
+Demonstration: Add an Article database entry [00:50| 10:56]
 --------------------------------
   - Click on 'Article'
   - Click on 'Add Article'
@@ -170,13 +173,13 @@ Demonstration: Add an Article database entry [00:45| 09:57]
     
 
 So this is a web application framework.
-Slide 6 [00:30 | 10:27]
+Slide 6 [00:17 | 11:13]
 ----------------
 
 **What is a web application**
 
 ![Block diagram of Web application](https://raw.githubusercontent.com/FOSSEE/learn_django/master/tutorial_1_intro/webapp_diag.png 'Web Application Block diagram')
-** Narration for this slide **	
+** Can be used for narration for this slide **	
   - An application stored on a remote computer i.e. server
   - A server can be accessed by a user through a web browser
   - The browser communicates with the server by sending a 'request'
@@ -185,7 +188,7 @@ Slide 6 [00:30 | 10:27]
   - It sends a 'response' to the user
   - The user's browser then displays this response suitably formatted.
 
-Slide 7 [00:13 | 10:40]
+Slide 7 [00:05 | 11:18]
 ------------------
 
 **What is a web Framework**
@@ -200,5 +203,5 @@ Slide 7 [00:13 | 10:40]
  
  *** With this we come to the end of the tutorial***
  ----------------------------------------------------
- *** Add concluding slides and assignment***
+ *** Add concluding slides and assignment***[00:42 | 12:00  ]
  -------------------------------------------
