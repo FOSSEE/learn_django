@@ -1,0 +1,56 @@
+Tutorial: Create Views and Route your URLS
+===========================================
+
+Slide 1
+------------
+Title Slide
+**Creating Views and Routing URLs**
+
+Slide 2 [00:12 | 00:20]
+--------------
+
+**Learning Objectives**
+
+In this tutorial, we will learn to;
+  - Create a django view
+  - Create a django template
+  - Create a url routing scheme
+
+Slide 3 [00:11 | 00:31]
+---------------
+
+**System Requirements**
+  - Ubuntu 16.10
+  - Python 3.5 or higher version
+  - python3.4-venv
+  
+Slide 4 [00:11 | 00:42]
+---------------
+
+**Pre-requisites**
+
+In order to follow this tutorial, you need to know;
+  - how to create a django project
+  - If not, see the relevant django tutorial on http://spoken-tutorial.org
+
+Slide 5 
+------------
+**What is a View**
+  - A view is code that accepts a request
+  - It is responsible for:
+    - interaction with the database
+    - reads, deletes & updates database entries 
+    - trigger the rendering of templates
+
+Slide 6
+-----------
+**Creating a View**
+  - Edit the /blog/views.py
+
+    # /blog/views.py
+    def index(request):
+        blog_list = Blog.objects.all() # This is called a query
+        for b in blogs:
+            article_list = Article.objects.filter(blog=b)
+        output = 'Blog: {0}\n' + '\n'.join([article.title for article in article_list])
+        return HttpResponse(output)
