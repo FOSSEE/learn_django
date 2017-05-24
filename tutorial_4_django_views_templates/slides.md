@@ -37,12 +37,8 @@ Slide 5
 ------------
 **What is a View**
   - A view is code that accepts a request
-  - It is responsible for:
-    - interaction with the database
-    - reads, deletes & updates database entries
-    - Provide a response to the request
-    - trigger the rendering of templates as a part of response
-
+  - It processes the request and sends back a response
+    
 Demonstration
 -----------
 **Creating a View**
@@ -54,30 +50,30 @@ Edit the /blog/views.py
     
     from .models import Blog, Article
     
-    def index(request):
-        blog_list = Blog.objects.all() # This is called a query
-        for b in blogs:
-            article_list = Article.objects.filter(blog=b)
-        output = 'Blog: {0}\n\n'.format(b) + '\n'.join([article.title for article in article_list])
+    def get_blogs(request):
+        blogs = Blog.objects.all() # This is called a query
+        for blog in blogs:
+            articles = Article.objects.filter(blog=blog)
+        output = 'Blog: {0}\n\n'.format(b) + '\n'.join([article.title for article in articles])
         return HttpResponse(output)
 
-    - Narrator Notes: Please state that Django queries will be explained later in the series
+    - Narrator Notes: Please state that Django queries will be explained later in the series,
+    and should explain the above code.
 
 Demonstration
 -----------
-**Add URL routing to URLConf of app**
-  - Create a new file: /blog/urls.py
+**Add URL routing to URLConf**
+  - Open file: /mysite/urls.py
 
 This is the URLConf for the app
 
-    # /blog/urls.py
+    # /myproject/urls.py
     from django.conf.urls import url
     
     from . import views
     
-    app_name = 'blog'
     urlpatterns = [
-        url(r'^$', views.index, name='index'),
+        url(r'^blogs/$', views.get_blogs, name='blogs'),
     ]
 
 Now change the /myproject/urls.py so that the project knows which urls file to call
@@ -90,14 +86,15 @@ This is called the URL Dispatcher
 
     urlpatterns = [
         url(r'^admin/', admin.site.urls),
-        url(r'^blog/', include('blog.urls')), # Add this line
+        url(r'^$', views.index, name='index') # Add this line
     ]
 
   - Run the django server using command:
       - python manage.py runserver
 
   - **Narrator Note**: Show the web browser to the user
-
+  - Go to the url http://localhost:8000/blogs/ and show the output.
+  - You will see the article that you had added in the tutorial 3
 
  Slide 6
 ------------
@@ -105,7 +102,7 @@ This is called the URL Dispatcher
   - We have hardcoded the output in the view
   - What if we want the displayed html to change dynamically?
     - Use a 'template' HTML file
-  - Template HTML files contain DJango template tags that act like variables
+  - Template HTML files contain Django template tags that act like variables
   - Django replaces these tags in the HTML file with dynamic data obtained from views
 
  Demonstration
@@ -119,22 +116,18 @@ This is called the URL Dispatcher
     - cd templates
     - mkdir blog
     
-In this directory create an *index.html* file and add the below code
+In this directory create an *blogs.html* file and add the below code
   
-    # /blog/templates/blog/index.html
-    {% if article_list %}
+    # /blog/templates/blog/blogs.html
+    {% if articles %}
         <ul>
-        {% for article in article_list %}
+        {% for article in articles %}
             <li>{{ article.title }} | Blog: {{ article.blog.name}}</li>
         {% endfor %}
         </ul>
     {% else %}
         <p>No Blog articles are available.</p>
     {% endif %}
-
-Slide 8
------------
-**All about the Django Template**
 
   - We created a django template using an HTML file
   - The Django templates give the user limited programming logic capabilities like variables, if-else & for loops
@@ -168,19 +161,15 @@ Now let's modify the blog/views.py as follows
 
     def index(request):
         article_list = Articles.objects.all()
-        
-        return render(request, 'blog/index.html', {'article_list': article_list})
+        context = {'article_list': article_list}
+        return render(request, 'blog/index.html', context)
 
   - Run the django server
-  - Access the link localhost:8000/blog/
-    - You will see the article that you had added in the tutorial 3
+  - Access the link localhost:8000/blogs/
 
 
-Slide 11 [00:12 | 08:09]
----------------   
-** Assignment ** 
- - Create a new virtual environment.
- - Activate it.
- - Install other version of django
+*** With this we come to the end of the tutorial***
+ ----------------------------------------------------
+ *** Add concluding slides and assignment***[00:42 | 12:00  ]
+ -------------------------------------------
 
- ** Followed by standard concluding slides ** [00:30 | 08:39] 
