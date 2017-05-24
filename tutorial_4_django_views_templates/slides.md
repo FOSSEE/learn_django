@@ -1,12 +1,12 @@
 Tutorial: Create Views and Route your URLS
 ===========================================
 
-Slide 1
+Slide 1 [00:08 | 00:08]
 ------------
 Title Slide
 **Creating Views and Routing URLs**
 
-Slide 2 [00:12 | 00:20]
+Slide 2
 --------------
 
 **Learning Objectives**
@@ -16,7 +16,7 @@ In this tutorial, we will learn to;
   - Create a django template
   - Create a url routing scheme
 
-Slide 3 [00:11 | 00:31]
+Slide 3
 ---------------
 
 **System Requirements**
@@ -24,13 +24,13 @@ Slide 3 [00:11 | 00:31]
   - Python 3.5 or higher version
   - python3.4-venv
   
-Slide 4 [00:11 | 00:42]
+Slide 4
 ---------------
 
 **Pre-requisites**
 
 In order to follow this tutorial, you need to know;
-  - how to create a django project
+  - how to create models in django
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
 
 Slide 5 
@@ -43,7 +43,7 @@ Slide 5
     - Provide a response to the request
     - trigger the rendering of templates as a part of response
 
-Slide 6
+Demonstration
 -----------
 **Creating a View**
   - Edit the /blog/views.py
@@ -95,7 +95,8 @@ Demonstration
 
   - **Note to Narrator**: Show the web browser to the user
 
-Slide 7
+
+ Slide 6
 ------------
 **What is a Django Template**
   - We have hardcoded the output in the view
@@ -104,7 +105,7 @@ Slide 7
   - Template HTML files contain DJango template tags that act like variables
   - Django replaces these tags in the HTML file with dynamic data obtained from views
 
-Demonstration
+ Demonstration
 ----------------
 **How to create a template**
 
@@ -166,3 +167,13 @@ Demonstration
   - Run the django server
   - Access the link localhost:8000/blog/
     - You will see the article that you had added in the tutorial 3
+
+
+Slide 11 [00:12 | 08:09]
+---------------   
+** Assignment ** 
+ - Create a new virtual environment.
+ - Activate it.
+ - Install other version of django
+
+ ** Followed by standard concluding slides ** [00:30 | 08:39] 
