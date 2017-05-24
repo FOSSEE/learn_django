@@ -1,12 +1,13 @@
 Tutorial: Create Views and Route your URLS
 ===========================================
+[Demonstration time: 10 mins 50 s (0.85 ~ 85%) | Total time: 12 mins 42 s]
 
 Slide 1 [00:08 | 00:08]
 ------------
 Title Slide
 **Creating Views and Routing URLs**
 
-Slide 2
+Slide 2 [00:12 | 00:20]
 --------------
 
 **Learning Objectives**
@@ -16,7 +17,7 @@ In this tutorial, we will learn to;
   - Create a django template
   - Create a url routing scheme
 
-Slide 3
+Slide 3 [00:11 | 00:31]
 ---------------
 
 **System Requirements**
@@ -24,7 +25,7 @@ Slide 3
   - Python 3.5 or higher version
   - python3.4-venv
   
-Slide 4
+Slide 4 [00:11 | 00:42]
 ---------------
 
 **Pre-requisites**
@@ -33,13 +34,13 @@ In order to follow this tutorial, you need to know;
   - how to create models in django
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
 
-Slide 5 
+Slide 5 [00:10 | 00:52]
 ------------
 **What is a View**
   - A view is code that accepts a request
   - It processes the request and sends back a response
     
-Demonstration
+Demonstration [03:00 | 03:52]
 -----------
 **Creating a View**
 
@@ -54,27 +55,15 @@ Edit the /blog/views.py
         blogs = Blog.objects.all() # This is called a query
         for blog in blogs:
             articles = Article.objects.filter(blog=blog)
-        output = 'Blog: {0}\n\n'.format(b) + '\n'.join([article.title for article in articles])
-        return HttpResponse(output)
+        response = 'Blog: {0}\n\n'.format(b) + '\n'.join([article.title for article in articles])
+        return HttpResponse(response)
 
     - Narrator Notes: Please state that Django queries will be explained later in the series,
     and should explain the above code.
 
-Demonstration
+Demonstration [03:50 | 07:42]
 -----------
 **Add URL routing to URLConf**
-  - Open file: /mysite/urls.py
-
-This is the URLConf for the app
-
-    # /myproject/urls.py
-    from django.conf.urls import url
-    
-    from . import views
-    
-    urlpatterns = [
-        url(r'^blogs/$', views.get_blogs, name='blogs'),
-    ]
 
 Now change the /myproject/urls.py so that the project knows which urls file to call
 
@@ -96,7 +85,7 @@ This is called the URL Dispatcher
   - Go to the url http://localhost:8000/blogs/ and show the output.
   - You will see the article that you had added in the tutorial 3
 
- Slide 6
+ Slide 6 [00:18 | 08:00]
 ------------
 **What is a Django Template**
   - We have hardcoded the output in the view
@@ -105,7 +94,7 @@ This is called the URL Dispatcher
   - Template HTML files contain Django template tags that act like variables
   - Django replaces these tags in the HTML file with dynamic data obtained from views
 
- Demonstration
+ Demonstration [03:00 | 11:00]
 ----------------
 **How to create a template**
 
@@ -149,7 +138,7 @@ This is a for loop
   - variables and objects are represented as {{ my_variable }}
   - *Narrator's note* We will discuss more about Django templating later in the series 
 
-Demonstration
+Demonstration [01:00 | 12:00]
 ----------------
 Now let's modify the blog/views.py as follows
     
@@ -170,6 +159,6 @@ Now let's modify the blog/views.py as follows
 
 *** With this we come to the end of the tutorial***
  ----------------------------------------------------
- *** Add concluding slides and assignment***[00:42 | 12:00  ]
+ *** Add concluding slides and assignment***[00:42 | 12:42  ]
  -------------------------------------------
 
