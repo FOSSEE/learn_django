@@ -46,13 +46,14 @@ Slide 5
 Demonstration
 -----------
 **Creating a View**
-  - Edit the /blog/views.py
+
+Edit the /blog/views.py
 
     # /blog/views.py
     from django.http import HttpResponse
-
+    
     from .models import Blog, Article
-
+    
     def index(request):
         blog_list = Blog.objects.all() # This is called a query
         for b in blogs:
@@ -60,14 +61,15 @@ Demonstration
         output = 'Blog: {0}\n\n'.format(b) + '\n'.join([article.title for article in article_list])
         return HttpResponse(output)
 
-    - Narrotr Not: Please state that Django queries will be explained later in the series
+    - Narrator Notes: Please state that Django queries will be explained later in the series
 
 Demonstration
 -----------
 **Add URL routing to URLConf of app**
   - Create a new file: /blog/urls.py
-  - This is the URLConf for the app
-  `
+
+This is the URLConf for the app
+
     # /blog/urls.py
     from django.conf.urls import url
     
@@ -78,22 +80,23 @@ Demonstration
         url(r'^$', views.index, name='index'),
     ]
 
-  - Now change the /myproject/urls.py so that the project knows which urls file to call
-  - This is called the URL Dispatcher
-  
-  # /myproject/urls.py
-  from django.conf.urls import include, url
-  from django.contrib import admin
+Now change the /myproject/urls.py so that the project knows which urls file to call
 
-  urlpatterns = [
-      url(r'^admin/', admin.site.urls),
-      url(r'^blog/', include('blog.urls')), # Add this line
-  ]
+This is called the URL Dispatcher
+
+    # /myproject/urls.py
+    from django.conf.urls import include, url
+    from django.contrib import admin
+
+    urlpatterns = [
+        url(r'^admin/', admin.site.urls),
+        url(r'^blog/', include('blog.urls')), # Add this line
+    ]
 
   - Run the django server using command:
-    - python manage.py runserver
+      - python manage.py runserver
 
-  - **Note to Narrator**: Show the web browser to the user
+  - **Narrator Note**: Show the web browser to the user
 
 
  Slide 6
@@ -115,7 +118,8 @@ Demonstration
   - Create a directory called *blog* within the *templates* directory
     - cd templates
     - mkdir blog
-  - In this directory create an *index.html* file and add the below code
+    
+In this directory create an *index.html* file and add the below code
   
     # /blog/templates/blog/index.html
     {% if article_list %}
@@ -134,24 +138,27 @@ Slide 8
 
   - We created a django template using an HTML file
   - The Django templates give the user limited programming logic capabilities like variables, if-else & for loops
-  - This is an if-else statement in Django templates
+
+This is an if-else statement in Django templates
+      
       {% if %}
         ...
       {% else %}
         ...
       {% endif %}
       
-  - This is a for loop
+This is a for loop
+      
       {% for var in my_list %}
         ...
       {% endfor %}
       
   - variables and objects are represented as {{ my_variable }}
-  - *Narrator's note* We will discuss more about 
+  - *Narrator's note* We will discuss more about Django templating later in the series 
 
 Demonstration
 ----------------
-  - Now let's modify the blog/views.py as follows
+Now let's modify the blog/views.py as follows
     
     from django.http import HttpResponse
     from django.shortcuts import render
