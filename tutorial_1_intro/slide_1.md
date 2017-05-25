@@ -12,10 +12,10 @@ Slide 2 [00:09 | 00:17]
 
 **Learning Objectives**
 
-In this tutorial, we will learn about;
-  - What is Django
-  - What is virtual environment
-  - Django installation
+In this tutorial, we will learn:
+  - What is Django?
+  - How to use a  virtual environment
+  - How to install Django
 
 Slide 3 [00:11 | 00:28]
 ---------------
@@ -31,8 +31,9 @@ Slide 4 [00:12 | 00:40]
 **Pre-requisites**
 
 In order to follow this tutorial, you need;
-  - Knowledge of Object Oriented Python Programming
-  - If not, see the Python tutorials on http://spoken-tutorial.org
+  - to know Python
+  - to know Object Oriented Programming
+  - If not, see the tutorials on http://spoken-tutorial.org
 	
 Slide 5 [00:10 | 00:50]
 ----------------
@@ -85,7 +86,7 @@ Slide 9 [00:03 | 01:15]
 Slide 10 [00:12 | 01:27]
 ---------------
 
-**What is virtual environment**
+**What is a virtual environment**
   - Create 'isolated' environment
   - Does not require root access
   - Install Python packages from PyPI
@@ -106,6 +107,8 @@ Demonstration [02:00 | 05:27]
 ---------------
 
 **Install Django**
+  - Let us reactivate the virtual environment
+    - *source myapp_env/bin/activate*
   - Check if django is installed using;
     - Command: *python -m django --version*
     - If not installed then we see "No module named django"
