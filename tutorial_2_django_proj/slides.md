@@ -48,10 +48,10 @@ Demonstration: [01:30 | 2:16]
     
 Demonstration: [02:00 | 4:16]
 -------------
-  - So django project is
-    - collection of settings for an instance of Django
-    - Includes;
-      - database configuration(will be seen after we run the server for the first time)
+  - A Django project:
+    - is a collection of settings for an instance of Django
+    - includes;
+      - database configuration
       - Django-specific options
       - Application-specific settings
       
@@ -125,6 +125,7 @@ Demonstration [01:00 | 08:31]
         'django.contrib.staticfiles',
     ]
    - So now our app will be recognized by our project.
+   - In the next tutorial we will see how to build the Blog app
    
 Slide 13 [00:10 | 08:41]
 ---------------   
