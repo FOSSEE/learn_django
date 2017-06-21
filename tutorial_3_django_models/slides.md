@@ -40,9 +40,9 @@ Slide 4: What is a Django Model [00:30 | 01:12]
   - Every Django app has one or more models
   - A Django model is a pythonic representation of a Database Table
     - A Model Class represents a database table
-    - A Model attribute represents a column
-    - Each model instance is table row
-  - All django models are stored in a models.py
+    - A Model attribute represents a table field (each column in the table) 
+    - Each model instance is a table record (each row in the table)
+  - All django models are written in a models.py
     - models.py represents a Database
 
 Slide 5: Creating Django Models for Blog app [00:12 | 01:24]
@@ -51,14 +51,13 @@ Slide 5: Creating Django Models for Blog app [00:12 | 01:24]
   - We will create two tables 'blog' and 'article'
   - The blog model will have 3 fields:
     - name
-    - creator
-    - create_date
+    - created_on
   - the 'article' model will have 5 fields:
     - blog
+    - created_on
     - title
-    - create_date
-    - author
     - body
+    - draft
     
   - **(Not for narration) Note: Explain this in detail during demonstration**
 
@@ -179,7 +178,7 @@ Slide 6 [00:17 | 11:13]
 **What is a web application**
 
 ![Block diagram of Web application](https://raw.githubusercontent.com/FOSSEE/learn_django/master/tutorial_1_intro/webapp_diag.png 'Web Application Block diagram')
-** Can be used for narration for this slide **	
+**Can be used for narration for this slide**	
   - An application stored on a remote computer i.e. server
   - A server can be accessed by a user through a web browser
   - The browser communicates with the server by sending a 'request'
