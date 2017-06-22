@@ -1,6 +1,6 @@
 Tutorial: Create Views and Route your URLS(urls setting)
 ===========================================
-[Demonstration time:  mins  s (0.85 ~ 85%) | Total time:  mins  s]
+[Demonstration time: 7 mins 00 s (0.817 ~ 82%) | Total time: 8 mins 34 s]
 
 Slide 1 [00:08 | 00:08]
 ------------
@@ -82,7 +82,7 @@ This is called the URL Dispatcher
   - Go to the url http://localhost:8000/blogs/ and show the output.
   - You will see the blog object Query set.
   - So we have created a simple client-server model.(At this point we can show
-    the image we showed in previous tutorial.)
+    the image, we showed in the previous tutorial.)
   - Let us now improve our view.
 
 
@@ -127,3 +127,4 @@ In the /blog/views.py edit get_blogs function
  ----------------------------------------------------
 *** Add concluding slides and assignment***[00:42 | 08:34]
  -------------------------------------------
+ Narrator Notes: Can give assignment to create a view ***count_blogs*** for displaying the number of blogs.
