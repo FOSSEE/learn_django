@@ -1,7 +1,7 @@
 Slide 1 [00:08 | 00:08]
 ------------
 Title Slide
-**Creating Views and Routing URLs**
+**Creating an Interface to view the Blog**
 
 Slide 2 [00:12 | 00:20]
 --------------
@@ -198,4 +198,7 @@ Slide 12
 - Now click on any one of the articles;
   - You will be redirected to the new view and template that you just created.
   
-Slide 13Add test the view slide
+Demonstration
+-----------------------
+
+*Note to Narrator: Demonstrate the new view in the browser to the viewer*
