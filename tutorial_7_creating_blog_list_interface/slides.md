@@ -37,13 +37,13 @@ Slide 5:
 
 **Create a new View**
 
-- Modify the blog/views.py and add a new view to display the Blog List of a particular user
+- Modify the blog/views.py, modify the get_blogs view to display the Blog List of a particular user in a template
 
       def get_blogs(request, user):
           user_object = User.object.get(username=user)
           blogs = Blog.objects.filter(creator=user_object)
           context = {'blogs': blogs}
-          return render(request, 'myapp/index.html', context)
+          return render(request, 'blog/index.html', context)
 
 Slide 6:
 ---------------------
@@ -71,7 +71,7 @@ Slide 6:
 Slide 7:
 ---------------------
 
-** Modify the URLs **
+**Modify the URLs**
 
 - Modify the urls located in the ```myproject``` folder
 
@@ -82,7 +82,7 @@ Slide 7:
 
       urlpatterns = [
           url(r'^admin/', admin.site.urls),
-          url(r'^blog/$', blog.urls) # Add this line
+          url(r'^blog/$', blog.urls) # Change this line
       ]
 
 - Modify the urls located in the ```blogs``` folder
@@ -92,6 +92,33 @@ Slide 7:
       from blog import urls
 
       urlpatterns = [
-          url(r'^(?P<username>\w+)/list/$', views.get_blogs, name='blogs') # Add this line
+          url(r'^(?P<username>\w+)/list/$', views.get_blogs, name='blogs')
       ]
+      
+Slide 8
+-----------------------
 
+**Test the new view**
+
+- Activate the virtual environment
+- Run the Django test server using the command *python manage.py runserver*
+- Open the web browser and go to http://127.0.0.1:8000/blog/<username>/list
+  - Use the username created in Tutorial 3
+  
+Demonstration
+-----------------------
+
+*Note to Narrator: Demonstrate the new view in the browser to the viewer*
+
+Slide 9
+-----------------------
+
+**Add a view to Display Articles**
+
+- Modify the blog/views.py and add a new view to display a list of all the articles of a blog
+
+      def get_blogs(request, user):
+          user_object = User.object.get(username=user)
+          blogs = Blog.objects.filter(creator=user_object)
+          context = {'blogs': blogs}
+          return render(request, 'blog/index.html', context)
