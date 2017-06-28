@@ -146,7 +146,7 @@ Slide 10b:
 
 **Modify the blog template**
 
-- We need to add a link to each article in the blog list page so that a user ca view all the articles
+- We need to add a link to each article in the blog list page so that a user can view an articles
 
    # /blog/templates/blog/blogs.html
     {% if blogs %}
@@ -197,8 +197,5 @@ Slide 12
   - Use the username created in Tutorial 3
 - Now click on any one of the articles;
   - You will be redirected to the new view and template that you just created.
-
-Demonstration
------------------------
-
-*Note to Narrator: Demonstrate the new view in the browser to the viewer*
+  
+Slide 13Add test the view slide
