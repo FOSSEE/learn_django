@@ -52,11 +52,19 @@ Slide 6
 Slide 7
 ----------------
 
-**Creating a New Form**
+**Creating a New Form for Blogs**
 
-- Create a forms.py in the ```blog```
+- Create a forms.py in the ```blog``` and add the code
 
-
+    class BlogForm(ModelForm):
+        class Meta:
+            model = Blog
+            fields = ['name', 'created_on']
+        
+    class ArticleForm(ModelForm):
+        class Meta:
+            model = Article
+            fields = ['created_on', 'title', 'body', 'draft']
 
 Slide 8
 ----------------
