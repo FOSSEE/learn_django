@@ -56,30 +56,103 @@ Slide 7
 
 - Create a forms.py in the ```blog``` and add the code
 
-    class BlogForm(ModelForm):
-        class Meta:
-            model = Blog
-            fields = ['name', 'created_on']
+      class BlogForm(ModelForm):
+          class Meta:
+              model = Blog
+              fields = ['name', 'created_on']
         
-    class ArticleForm(ModelForm):
-        class Meta:
-            model = Article
-            fields = ['created_on', 'title', 'body', 'draft']
+      class ArticleForm(ModelForm):
+          class Meta:
+              model = Article
+              fields = ['created_on', 'title', 'body', 'draft']
 
 Slide 8
 ----------------
 
 **Adding a new view to handle the form**
 
-Slide 7
------------------
+- Let's add a new view to add a new blog or edit an existing blog
+- To do this add the following code to the ```views.py``` in the ```blog```directory
 
-**Creating an HTML Form**
+      from django.http import HttpResponse, HttpResponseNotFound
+      from .forms import BlogForm, ArticleForm
+
+      def edit_blog(request, blog_id):
+      """
+      This view adds a new or edits an existing blog
+      """
+          if blog_id:
+              blog = Blog.objects.get(id=blog_id)
+          else:
+              blog = Blog()
+          if request.method == 'GET':
+              blog_form = BlogForm(instance=blog)
+              context = {'form': blog_form, 'blog': blog}
+              return render(request, 'blog/blog_form.html', context)
+          elif request.method == 'POST':
+              form = BlogForm(request.POST, instance=blog)
+              if form.is_valid():
+                  form.save()
+                  return redirect('index')
+              else:
+                  return redirect('edit_blog')
+                  
+      def edit_article(request, blog_id, article_id):
+      """
+      This view adds a new or edits an existing article
+      """
+          blog = Blog.objects.get(id=blog_id)
+          if article_id:
+              article = Article.objects.get(id=article_id)
+          else:
+              article = Article(blog=blog)
+          if request.method == 'GET':
+              article_form = ArticleForm(instance=article)
+              context = {'form': article_form, 'article': article}
+              return render(request, 'blog/article_form.html', context)
+          elif request.method == 'POST':
+              if article == None:
+                  form = ArticleForm(request.POST, instance=article)
+              else:
+                  form = ArticleForm(instance=article)
+              if form.is_valid():
+                  form.save()
+                  return redirect('index')
+              else:
+                  return redirect('edit_article')
 
 Slide 8
 -----------------
 
 **Creating a Template for the view**
+
+- Create a template ```edit_blog.html``` at ```/blog/templates/blog/edit_blog.html``` to look like below
+
+        <html>
+        <body>
+        {% if form %}
+            <form action="/blogs/edit_blogs/{{ blog.id }}" method="post">
+                {% csrf_token %}
+                    {{ form }}
+                <input type="submit" value="Submit" />
+            </form>
+        {% endif %}
+        </body>
+        </html>
+        
+- Create a template ```edit_article.html``` at ```/blog/templates/blog/edit_article.html``` to look like below
+
+        <html>
+        <body>
+        {% if form %}
+            <form action="/blogs/edit_blogs/{{ blog.id }}/{{ article.id}}" method="post">
+                {% csrf_token %}
+                    {{ form }}
+                <input type="submit" value="Submit" />
+            </form>
+        {% endif %}
+        </body>
+        </html>
 
 Slide 9
 -----------------
