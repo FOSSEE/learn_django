@@ -131,7 +131,7 @@ Slide 8
         <html>
         <body>
         {% if form %}
-            <form action="/blogs/edit_blogs/{{ blog.id }}" method="post">
+            <form action="/blog/edit_blogs/{{ blog.id }}" method="post">
                 {% csrf_token %}
                     {{ form }}
                 <input type="submit" value="Submit" />
@@ -145,7 +145,7 @@ Slide 8
         <html>
         <body>
         {% if form %}
-            <form action="/blogs/edit_blogs/{{ blog.id }}/{{ article.id}}" method="post">
+            <form action="/blog/edit_articles/{{ blog.id }}/{{ article.id}}" method="post">
                 {% csrf_token %}
                     {{ form }}
                 <input type="submit" value="Submit" />
@@ -157,4 +157,59 @@ Slide 8
 Slide 9
 -----------------
 
+**Add URLs for editing blogs and articles**
+
+Modify the urls located in the blogs folder
+
+    # /blogs/urls.py
+    from django.conf.urls import patterns, url
+    from blog import urls
+
+    urlpatterns = [
+        url(r'^(?P<username>\w+)/list/$', views.get_blogs, name='blogs'),
+        url(r'^/edit_blogs/(?P<blog_id>\d+)/$', views.edit_blogs, name='edit_blogs'),
+        url(r'^/edit_articles/(?P<blog_id>\d+)/(?P<article_id>\d+)$', views.edit_articles, name='edit_articles')
+    ]
+
+Slide 10:
+-----------------
+
+**Edit Templates to add new URL redirect**
+
+- Edit the ```blogs.html``` as follows;
+
+   # /blog/templates/blog/blogs.html
+    
+    <html>
+    <body>
+    <h2><a href='/blog/edit_blogs/'>Add New Blog</a></h2>
+    {% if blogs %}
+        <h2><a href='/blog/edit_articles/'>Add New Article</a></h2>
+        <ul>
+        {% for blog in blogs %}
+            <li>{{ blog.name}} <a href='/blog/edit_blogs/{{ blog.id }}'>[Edit]</a></li>
+                <ul>
+                {% for article in blog.article_set %}
+                    <li><a href='/blog/article/{{ article.id }}'>{{ article.title }}</a> <a href='blog/edit_article/{{ blog.id}}/{{ article.id }}'>[Edit]</a></li>
+                {% endfor %}
+                </ul>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Blogs are available.</p>
+    {% endif %}
+    </body>
+    </html>
+
+
+Slide 11
+-----------------
+
 **Testing the new view and form**
+
+Test the new view
+
+- Activate the virtual environment
+- Run the Django test server using the command python manage.py runserver
+- Open the web browser and go to http://127.0.0.1:8000/blog/edit_blog/1
+- You will be taken to the new view with the form.
