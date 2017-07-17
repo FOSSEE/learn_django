@@ -1,18 +1,18 @@
-Tutorial: Create Views and Route your URLS(urls setting)
+Tutorial: Create Views and Route your URLs
 ===========================================
 [Demonstration time: 7 mins 00 s (0.817 ~ 82%) | Total time: 8 mins 34 s]
 
 Slide 1 [00:08 | 00:08]
 ------------
 Title Slide
-**Creating Views and Routing URLs**
+**Creating Views and Resolving URLs**
 
 Slide 2 [00:12 | 00:20]
 --------------
 
 **Learning Objectives**
 
-In this tutorial, we will learn to;
+In this tutorial, we will learn to:
   - Create a django view
   - Create a url routing scheme
 
@@ -29,7 +29,7 @@ Slide 4 [00:11 | 00:42]
 
 **Pre-requisites**
 
-In order to follow this tutorial, you need to know;
+In order to follow this tutorial, you need to know:
   - how to create models in django
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
 
