@@ -33,4 +33,53 @@ Slide 5:
 
 **Modify the urls.py**
 
-- Modify the urls.py file located in the ```blog``` directory
+- Modify the urls.py file located in the ```myproject``` folder
+
+    # /myproject/urls.py
+    from django.conf.urls import include, url
+    from django.contrib import admin
+    from blog import views
+    from django.contrib.auth import views as auth_views # Add this import
+
+
+    urlpatterns = [
+        url(r'^admin/', admin.site.urls),
+        url(r'^blogs/$', include('blogs.urls')),
+        url(r'^login/$', auth_views.login, {'template_name': 'login.html'}), # Add this line
+    ]
+
+Slide 6:
+------------------
+
+**Create a new template**
+
+Create a template login.html at /blog/templates/blog/login.html to look like below
+
+- Create a template ```login.html``` at ```/blog/templates/blog/login.html``` to look like below
+
+        <html>
+        <body>
+            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                {% csrf_token %}
+                <p class="bs-component">
+                    <table>
+                        <tr>
+                            <td>{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                    </table>
+                </p>
+                <p class="bs-component">
+                    <center>
+                        <input class="btn btn-success btn-sm" type="submit" value="login" />
+                    </center>
+                </p>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </body>
+        </html>
+
