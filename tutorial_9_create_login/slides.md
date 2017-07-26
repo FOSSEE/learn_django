@@ -35,25 +35,23 @@ Slide 5:
 
 - Modify the urls.py file located in the ```myproject``` folder
 
-    # /myproject/urls.py
-    from django.conf.urls import include, url
-    from django.contrib import admin
-    from blog import views
-    from django.contrib.auth import views as auth_views # Add this import
+
+      from django.conf.urls import include, url
+      from django.contrib import admin
+      from blog import views
+      from django.contrib.auth import views as auth_views # Add this import
 
 
-    urlpatterns = [
-        url(r'^admin/', admin.site.urls),
-        url(r'^blogs/$', include('blogs.urls')),
-        url(r'^login/$', auth_views.login, {'template_name': 'login.html'}), # Add this line
-    ]
+      urlpatterns = [
+          url(r'^admin/', admin.site.urls),
+          url(r'^blogs/$', include('blogs.urls')),
+          url(r'^login/$', auth_views.login, {'template_name': 'login.html'}), # Add this line
+      ]
 
 Slide 6:
 ------------------
 
-**Create a new template**
-
-Create a template login.html at /blog/templates/blog/login.html to look like below
+**Create a new template*
 
 - Create a template ```login.html``` at ```/blog/templates/blog/login.html``` to look like below
 
@@ -82,4 +80,71 @@ Create a template login.html at /blog/templates/blog/login.html to look like bel
             </form>
         </body>
         </html>
+
+Slide 7:
+------------------
+
+**Add a new form**
+
+- We will now add a login form to the ```forms.py``` file located in ```blog``` folder
+- Add the following code to the file;
+
+      from django.contrib.auth.forms import AuthenticationForm 
+      from django import forms
+
+      # If you don't do this you cannot use Bootstrap CSS
+      class LoginForm(AuthenticationForm):
+          username = forms.CharField(label="Username", max_length=30, 
+                                   widget=forms.TextInput(attrs={'name': 'username'}))
+          password = forms.CharField(label="Password", max_length=30, 
+                                   widget=forms.TextInput(attrs={'name': 'password'}))
+
+
+Slide 8:
+--------------------
+
+**Add the form to the URL configuration**
+
+- We will now add the form that we just created to the URL configuration of ```/login``` URL
+
+      # myproject/urls.py
+
+      from django.conf.urls import include, url
+      from django.contrib import admin
+      from blog import views
+      from django.contrib.auth import views as auth_views
+      from blog.forms import LoginForm
+
+      urlpatterns = [
+          url(r'^admin/', admin.site.urls),
+          url(r'^blogs/$', include('blogs.urls')),
+          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}}), # Add this variable 'authentication_form'
+      ]
+
+Slide 8:
+--------------------
+
+**Modifying the views**
+
+- You will have to add this line ```@login_required(login_url="login/")``` above all the function in the ```views.py```
+- This is called a decorator.
+- It is a special function and a built-in feature in django that allows you to verify if the current session of the User is authenticated.
+- In case the user is not logged in / authenticated, the user is redirected to the link specified in the variable ```login_url```
+
+Example:
+
+      # blog/views.py
+
+      @login_required(login_url="login/")
+      def get_blogs(request, username):
+          ...
+
+      @login_required(login_url="login/")
+      def edit_blogs(request, blog_id):
+          ...
+
+      @login_required(login_url="login/")
+      def edit_articles(request, article_id):
+        ` ...
+
 
