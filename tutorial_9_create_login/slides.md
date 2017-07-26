@@ -9,8 +9,8 @@ Slide 2 [00:12 | 00:20]
 **Learning Objectives**
 
 In this tutorial, we will learn to;
-  - Create a new form
-  - Create a new view to handle form submission
+  - Create login functionality
+  - Using django built-in login and logout functions
 
 Slide 3 [00:11 | 00:31]
 ---------------
@@ -147,4 +147,30 @@ Example:
       def edit_articles(request, article_id):
         ` ...
 
+Slide 9:
+---------------------
+
+**Add logout url**
+
+- Modify the ```urls.py``` located in 
+
+      # myproject/urls.py
+
+      from django.conf.urls import include, url
+      from django.contrib import admin
+      from blog import views
+      from django.contrib.auth import views as auth_views
+      from blog.forms import LoginForm
+
+      urlpatterns = [
+          url(r'^admin/', admin.site.urls),
+          url(r'^blogs/$', include('blogs.urls')),
+          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}}),
+          url(r'^logout/$', auth_views.logout, {'next_page': '/login'}), # Add this line
+      ]
+      
+Slide 10:
+---------------------
+
+- Add a link to the ```/logout``` url to the templates
 
