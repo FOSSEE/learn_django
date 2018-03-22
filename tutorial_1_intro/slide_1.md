@@ -87,6 +87,7 @@ Slide 10 [00:12 | 01:27]
 ---------------
 
 **What is a virtual environment**
+
   - Create 'isolated' environment
   - Does not require root access
   - Install Python packages from PyPI
