@@ -1,6 +1,6 @@
 Tutorial: Create html template in django
 ===========================================
-[Demonstration time: 10 mins 50 s (0.85 ~ 85%) | Total time: 12 mins 42 s]
+[Demonstration time: 7 mins (0.805 ~ 81%) | Total time: 8 mins 42 s]
 
 Slide 1 [00:08 | 00:08]
 ------------
@@ -32,7 +32,7 @@ In order to follow this tutorial, you need to know;
   - how to create views in django
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
 
-Slide 5 [00:18 |]
+Slide 5 [00:18 | 01:00]
 ------------
 **What is a Django Template**
   - We have hardcoded the output in the view
@@ -41,7 +41,7 @@ Slide 5 [00:18 |]
   - Template HTML files contain Django template tags that act like variables
   - Django replaces these tags in the HTML file with dynamic data obtained from views
 
- Demonstration [03:00 | ]
+ Demonstration [04:00 | 05:00]
 ----------------
 **How to create a template**
 
@@ -85,7 +85,7 @@ This is a for loop
   - variables and objects are represented as {{ my_variable }}
   - *Narrator's note* We will discuss more about Django templating later in the series 
 
-Demonstration [01:00 | ]
+Demonstration [03:00 | 08:00]
 ----------------
 Now let's modify the blog/views.py as follows
     
@@ -106,5 +106,5 @@ Now let's modify the blog/views.py as follows
 
 *** With this we come to the end of the tutorial***
  ----------------------------------------------------
- *** Add concluding slides and assignment***[00:42 | ]
+ *** Add concluding slides and assignment***[00:42 | 08:42]
  -------------------------------------------
