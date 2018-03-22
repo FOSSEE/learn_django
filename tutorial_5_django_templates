@@ -1,11 +1,11 @@
-Tutorial: Create Views and Route your URLS(urls setting)
+Tutorial: Create html template in django
 ===========================================
 [Demonstration time: 10 mins 50 s (0.85 ~ 85%) | Total time: 12 mins 42 s]
 
 Slide 1 [00:08 | 00:08]
 ------------
 Title Slide
-**Creating Views and Routing URLs**
+**Creating html template in django**
 
 Slide 2 [00:12 | 00:20]
 --------------
@@ -13,7 +13,7 @@ Slide 2 [00:12 | 00:20]
 **Learning Objectives**
 
 In this tutorial, we will learn to;
-  - Create a django template
+  - Create a django html template
 
 Slide 3 [00:11 | 00:31]
 ---------------
