@@ -1,6 +1,6 @@
 Tutorial: Django Shell and Django Database Query
 =====================================
-[Demonstration time: 7 mins 00 secs (0.8333 ~ 83%) | Total time: 8 mins 24 s]
+[Demonstration time: 7 mins 0 secs (0.8333 ~ 83%) | Total time: 8 mins 24 s]
 ------------
 
 Slide 1 [00:00 | 00:08]
@@ -59,18 +59,17 @@ In the terminal, run the command
 
 Run the following Django Query
 
-  >>> from blog.models import Blog, Article
-  >>> Blog.objects.all()
-  
-  >>> <QuerySet [<Blog: Blog object>]> # Output
+    >>> from blog.models import Blog, Article
+    >>> Blog.objects.all()
+    >>> <QuerySet [<Blog: Blog object>]> # Output
   
 Explanation: This django query returns all the instances of the Blog model.
 
 Now let's add a new blog
 
-  >>> from django.utils import timezone
-  >>> b = Blog(name='My Second Blog', created_on=timezone.now())
-  >>> b.save()
+    >>> from django.utils import timezone
+    >>> b = Blog(name='My Second Blog', created_on=timezone.now())
+    >>> b.save()
 
 Explanation:
 - We create an instance of Blog and add values to it's fields (name and creation date)
@@ -78,66 +77,67 @@ Explanation:
 
 Now we access model field values via Python attributes.
 
-  >>> b.id
-  >>> b.name
-  >>> b.created_on
+    >>> b.id
+    >>> b.name
+    >>> b.created_on
 
 Change values
 
-  >>> b.name = 'This is a blog from shell!'
-  >>> b.save()
-  >>> b.name
+    >>> b.name = 'This is a blog from shell!'
+    >>> b.save()
+    >>> b.name
 
-  >>> Blog.objects.all()
+    >>> Blog.objects.all()
 
 In output we see, <QuerySet [<Blog: Blog object>....]>
   -  Blog object in the output is not a good representation for the object.
 
 Let us fix this in the models.py
- - Add __str__() method to the models
+ - Add \__str__() method to the models
 
- class Blog(models.model):
-   .
-   .
-   def __str__(self):
-       return self.name
+       class Blog(models.model):
+        .
+        .
+          def __str__(self):
+             return self.name
 
- class Article(models.model):
-   .
-   .
-   def __str__(self):
-       return self.title
+       class Article(models.model):
+           .
+           .
+           def __str__(self):
+               return self.title
 
 
 Lets add a custom method to the blog model
 
- class Blog(models.model):
-   .
-   .
-   def was_created_recently(self):
-        return self.created_on >= timezone.now() - datetime.timedelta(days=1)
+    class Blog(models.model):
+    .
+    .
+       def was_created_recently(self):
+           return self.created_on >= timezone.now() - datetime.timedelta(days=1)
 
 In shell:
-  >>> b2.was_created_recently()
+
+    >>> b2.was_created_recently()
 
 Demonstration [01:30 | 05:14]
 --------------
 
 **Filtering Entries with Django Queries**
 
-  >>> from blog.models import Blog, Article
-  >>> b2 = Blog.objects.filter(id=2)
-  >>> b2
+    >>> from blog.models import Blog, Article
+    >>> b2 = Blog.objects.filter(id=2)
+    >>> b2
   
 Explanation: This query will give all the Blog instances with id 1, since the id is unique we get only one result. You can make sure that the id is 2 by running
 
-  >>> b2[0].id
-  >>> 2 # Output
+    >>> b2[0].id
+    >>> 2 # Output
   
 Try sorting the Blog objects based on created_on year
 
-  >>> current_year = timezone.now().year
-  >>> Blog.objects.filter(created_on__year=current_year)
+    >>> current_year = timezone.now().year
+    >>> Blog.objects.filter(created_on__year=current_year)
 
 Explanation: This query will give all the blog instances with created_on year
 
@@ -146,31 +146,31 @@ Demonstration [01:00 | 06:14]
 -------------
 ** methods for queryset returned**
 
-  >>> blogs =  Blog.objects.all()
-  >>> blogs.count()
-  >>> blogs. <press TAB here to show > available methods
+    >>> blogs =  Blog.objects.all()
+    >>> blogs.count()
+    >>> blogs. <press TAB here to show > available methods
 
 Demonstration [01:30 | 07:44]
 -----------------
 
 **Queries for related Objects**
 
-  >>> b1 = Blog.objects.get(id=1)
-  >>> b1.articles_set.all()
+    >>> b1 = Blog.objects.get(id=1)
+    >>> b1.articles_set.all()
   
   Show output
   
 Explanation: Since every article is related to a Blog (because of the ForeignKey relationship), we can always get all Articles related to a particular blog by using the "_set" suffix
 
-  >>> a1 = Article.objects.get(id=1)
-  >>> b = a1.blog
-  >>> b.id
+    >>> a1 = Article.objects.get(id=1)
+    >>> b = a1.blog
+    >>> b.id
 
 Explanation: You can always access the information of the Blog object through it's related Article object as shown above
 
 You can also delete objects from shell
 
-  >>> b2.delete()
+    >>> b2.delete()
 
 Remaining conluding slides with the Assignment [00:40 | 8:24]
 ----------------------------------------------
