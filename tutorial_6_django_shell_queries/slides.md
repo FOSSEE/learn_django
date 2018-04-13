@@ -74,7 +74,7 @@ Now let's add a new blog
 
 Explanation:
 - We create an instance of Blog and add values to it's fields (name and creation date)
-- We then save the object, which means Django writes this information to the SQL table 'Blog'
+- We then save the object, which means Django writes this information to the database table 'Blog'
 
 Now we access model field values via Python attributes.
 
@@ -117,9 +117,9 @@ Lets add a custom method to the blog model
        def was_created_recently(self):
            return self.created_on >= timezone.now() - datetime.timedelta(days=1)
 
-In shell:
+In the shell:
 
-    >>> b2.was_created_recently()
+    >>> b.was_created_recently()
 
 Demonstration [01:30 | 05:14]
 --------------
@@ -140,7 +140,7 @@ Try sorting the Blog objects based on created_on year
     >>> current_year = timezone.now().year
     >>> Blog.objects.filter(created_on__year=current_year)
 
-Explanation: This query will give all the blog instances with created_on year
+Explanation: This query will give all the blog instances with created_on the current year
 
 
 Demonstration [01:00 | 06:14]
