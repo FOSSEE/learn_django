@@ -64,6 +64,7 @@ Run the following Django Query
     >>> <QuerySet [<Blog: Blog object>]> # Output
   
 Explanation: This django query returns all the instances of the Blog model.
+Returns a QuerySet similar to a list
 
 Now let's add a new blog
 
@@ -171,6 +172,8 @@ Explanation: You can always access the information of the Blog object through it
 You can also delete objects from shell
 
     >>> b2.delete()
+    
+(For script creator: Now again we can do a filter or get with id =2, get will throw an Exception that Blog.DoesNotExists)
 
 Remaining conluding slides with the Assignment [00:40 | 8:24]
 ----------------------------------------------
