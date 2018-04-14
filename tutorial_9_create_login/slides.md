@@ -1,9 +1,9 @@
-Slide 1 [00:08 | 00:08]
+Slide 1
 ------------
 Title Slide
 **Django Authentication**
 
-Slide 2 [00:12 | 00:20]
+Slide 2
 --------------
 
 **Learning Objectives**
@@ -12,7 +12,7 @@ In this tutorial, we will learn to;
   - Create login functionality
   - Using django built-in login and logout functions
 
-Slide 3 [00:11 | 00:31]
+Slide 3
 ---------------
 
 **System Requirements**
@@ -28,7 +28,7 @@ Slide 4:
 - Let us use our knowledge of forms and templates to create a login system for our blog application
 - We will use Django's inbuilt authentication system for this.
 
-Slide 5:
+Demonstration
 ----------------
 
 **Modify the urls.py**
@@ -48,7 +48,7 @@ Slide 5:
           url(r'^login/$', auth_views.login, {'template_name': 'login.html'}), # Add this line
       ]
 
-Slide 6:
+Demonstration
 ------------------
 
 **Create a new template*
@@ -81,7 +81,7 @@ Slide 6:
         </body>
         </html>
 
-Slide 7:
+Demonstration
 ------------------
 
 **Add a new form**
@@ -92,7 +92,6 @@ Slide 7:
       from django.contrib.auth.forms import AuthenticationForm 
       from django import forms
 
-      # If you don't do this you cannot use Bootstrap CSS
       class LoginForm(AuthenticationForm):
           username = forms.CharField(label="Username", max_length=30, 
                                    widget=forms.TextInput(attrs={'name': 'username'}))
@@ -100,7 +99,7 @@ Slide 7:
                                    widget=forms.TextInput(attrs={'name': 'password'}))
 
 
-Slide 8:
+Demonstration
 --------------------
 
 **Add the form to the URL configuration**
@@ -121,7 +120,7 @@ Slide 8:
           url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}}), # Add this variable 'authentication_form'
       ]
 
-Slide 8:
+Demonstration
 --------------------
 
 **Modifying the views**
@@ -139,15 +138,7 @@ Example:
       def get_blogs(request, username):
           ...
 
-      @login_required(login_url="login/")
-      def edit_blogs(request, blog_id):
-          ...
-
-      @login_required(login_url="login/")
-      def edit_articles(request, article_id):
-        ` ...
-
-Slide 9:
+Demonstration
 ---------------------
 
 **Add logout url**
@@ -169,8 +160,10 @@ Slide 9:
           url(r'^logout/$', auth_views.logout, {'next_page': '/login'}), # Add this line
       ]
       
-Slide 10:
+Demonstration
 ---------------------
 
 - Add a link to the ```/logout``` url to the templates
+
+**Concluding and Assignment Slides**
 
