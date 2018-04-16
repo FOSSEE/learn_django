@@ -52,21 +52,20 @@ Slide 6:
 
 - Modify the template created previously, located at ```/blog/templates/blog/blogs.html``` to look like below
 
-    # /blog/templates/blog/blogs.html
-    {% if blogs %}
+       {% if blogs %}
         <ul>
-        {% for blog in blogs %}
-            <li>{{ blog.name}}</li>
+          {% for blog in blogs %}
+             <li>{{ blog.name}}</li>
                 <ul>
                 {% for article in blog.article_set %}
                     <li>{{ article.title }}</li>
                 {% endfor %}
                 </ul>
-        {% endfor %}
+          {% endfor %}
         </ul>
-    {% else %}
-        <p>No Blogs are available.</p>
-    {% endif %}
+       {% else %}
+         <p>No Blogs are available.</p>
+       {% endif %}
 
 Slide 7:
 ---------------------
@@ -129,27 +128,25 @@ Slide 10a:
 
 - Create a template ```article.html``` at ```/blog/templates/blog/article.html``` to look like below
 
-    # /blog/templates/blog/article.html
-    {% if article %}
+      {% if article %}
         <h1>{{ article.blog.name }}</h1>
         <h2>Article Title: {{ article.title}}</h2>
         <p><b><u>Created:</u></b>  {{ article.created_on }}<p>
         <p>
         {{ article.body}}
         </p>
-    {% else %}
+      {% else %}
         <p>No Articles are available for this blog.</p>
-    {% endif %}
+      {% endif %}
 
 Slide 10b:
 -------------------
 
 **Modify the blog template**
 
-- We need to add a link to each article in the blog list page so that a user can view an articles
+- We need to add a link to each article in the blog list page ```/blog/templates/blog/blogs.html``` so that a user can view an articles
 
-   # /blog/templates/blog/blogs.html
-    {% if blogs %}
+      {% if blogs %}
         <ul>
         {% for blog in blogs %}
             <li>{{ blog.name}}</li>
@@ -160,9 +157,9 @@ Slide 10b:
                 </ul>
         {% endfor %}
         </ul>
-    {% else %}
+      {% else %}
         <p>No Blogs are available.</p>
-    {% endif %}
+      {% endif %}
 
 Slide 11
 -------------------------
