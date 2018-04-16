@@ -158,10 +158,11 @@ Demonstration
               if form.is_valid():
                   form.save()
                   return HttpResponse("Blog created")
-          blog_form = BlogForm(instance=blog)
+          blog_form = BlogForm(instance=blog)
           context = {'form': blog_form, 'blog': blog}
           return render(request, 'add_blog.html', context)
                   
+
 **Template for the view**
 
 - In ```add_blog.html``` add following
@@ -188,14 +189,13 @@ Slide 10:
 
 **Edit Templates to add new URL redirect**
 
-- Edit the ```blogs.html``` as follows;
+- Edit the ```/blog/templates/blog/blogs.html``` as follows;
 
-   # /blog/templates/blog/blogs.html
-    
-    <html>
-    <body>
-    <h2><a href='/blog/add_blogs/'>Add New Blog</a></h2>
-    {% if blogs %}
+
+      <html>
+      <body>
+      <h2><a href='/blog/add_blogs/'>Add New Blog</a></h2>
+      {% if blogs %}
          .
          .
         <ul>
@@ -205,11 +205,11 @@ Slide 10:
          .
          .
         </ul>
-    {% else %}
-        <p>No Blogs are available.</p>
-    {% endif %}
-    </body>
-    </html>
+      {% else %}
+          <p>No Blogs are available.</p>
+      {% endif %}
+      </body>
+      </html>
 
  *** With this we come to the end of the tutorial***
  ----------------------------------------------------
