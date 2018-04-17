@@ -56,13 +56,13 @@ Demonstration [02:50 | 05:42]
 
 - Create ```urls.py``` in blog app
 
-    from django.urls import path
-    from . import views
+      from django.urls import path
+      from . import views
 
-    app_name = 'blog'
-    urlpatterns = [
-        path('', views.index, name='index'),
-    ]
+      app_name = 'blog'
+      urlpatterns = [
+          path('', views.index, name='index'),
+      ]
 
 Now change the ```/myproject/urls.py``` so that the project knows which urls file to call
 
@@ -97,7 +97,6 @@ In the /blog/views.py edit get_blogs function
         return HttpResponse(blogs)
 
 - Narrator Notes: Please state that Django queries will be explained later in the series.
-- Show the blog in the output created in previous tutorial
 
 - Let us append the url to the urlpatterns in ```blog/urls.py```
 
@@ -108,15 +107,16 @@ In the /blog/views.py edit get_blogs function
         ]
 
   - Go to the url http://localhost:8000/blogs/get_blogs and show the output.
+  - Show the blog in the output created in previous tutorial
 
 - Improving the output
 
-    def get_blogs(request):
-        blogs = Blog.objects.all() # This is called a query
-        response = 'Blogs:'
-        for blog in blogs:
-            response += '<\ br> {0} '.format(blog)    
-        return HttpResponse(response)
+      def get_blogs(request):
+          blogs = Blog.objects.all() # This is called a query
+          response = 'Blogs:'
+          for blog in blogs:
+              response += '<\ br> {0} '.format(blog)    
+          return HttpResponse(response)
 
     - Narrator Notes: Should explain the above code.
     - Save and again show the browser.
