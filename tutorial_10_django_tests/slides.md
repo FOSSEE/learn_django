@@ -36,7 +36,7 @@ Slide 5
 ** Testing in Django**
  - Automated testing is very useful
  - We can validate our code during development
- - Testing is very complex,as we need to test models, views and forms.
+ - Testing is very complex, as we need to test models, views and forms.
  - In this tutorial we learn to write tests for models
 
 Demonstration
@@ -63,7 +63,17 @@ Demonstration
 
         python manage.py test blog
 
-We will see test Ran successfully
+We will see test ran successfully as follow:
+
+        Creating test database for alias 'default'...
+        System check identified no issues (0 silenced).
+        .
+        ----------------------------------------------------------------------
+        Ran 1 test in 0.002s
+
+        OK
+        Destroying test database for alias 'default'...
+
 
 Demonstration
 -------------
@@ -74,6 +84,10 @@ Demonstration
             is_created_recently = True
             self.assertEqual(blog.was_created_recently(), is_created_recently)
  - Run
+ - Output will be same as above except for following:
+
+        Ran 2 tests in 0.003s
+
 
 Demonstration
 -------------
@@ -88,7 +102,24 @@ Demonstration
 
  - Run
 
- - Show assertion error in the output
+ - Show assertion error in the following output:
+
+        Creating test database for alias 'default'...
+        System check identified no issues (0 silenced).
+        .F
+        ======================================================================
+        FAIL: test_was_created_recently (blog.tests.BlogTestCase)
+        ----------------------------------------------------------------------
+        Traceback (most recent call last):
+          File "/home/ttt/my-django/myproject/mysite/blog/tests.py", line 19, in test_was_created_recently
+            self.assertEqual(blog.was_created_recently(), is_created_recently)
+        AssertionError: True != False
+
+        ----------------------------------------------------------------------
+        Ran 2 tests in 0.003s
+
+        FAILED (failures=1)
+        Destroying test database for alias 'default'...
 
 
 Demonstration
@@ -102,13 +133,25 @@ Demonstration
             self.assertTrue(blog.was_created_recently())
 
  - Run
+ - Output
+
+        Ran 2 tests in 0.003s
+
+        OK
 
 
 Demonstration
 --------------
  - Run individual test case
 
-        python manage.py shell test blogs.tests.test_was_created_recently
+    - python manage.py test blog.tests.BlogTestCase.test_was_created_recently
+
+ - Output
+
+        Ran 1 test in 0.002s
+
+        OK
+
 
 Demonstration
 --------------
