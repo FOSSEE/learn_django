@@ -45,34 +45,33 @@ Demonstration [02:00 | 02:52]
 
 Edit the /blog/views.py
 
-    # /blog/views.py
     from django.http import HttpResponse
     
-    from .models import Blog
-    
-    def get_blogs(request):
-        blogs = Blog.objects.all() # This is called a query
-        return HttpResponse(blogs)
-
-    - Narrator Notes: Please state that Django queries will be explained later in the series,
-    and should explain the above code.
+    def index(request):
+        return HttpResponse("Hello, world. You are at the blog index")
 
 Demonstration [02:50 | 05:42]
 -----------
 **Add URL routing to URLConf**
 
-Now change the /myproject/urls.py so that the project knows which urls file to call
+- Create ```urls.py``` in blog app
 
-This is called the URL Dispatcher
+    from django.urls import path
+    from . import views
 
-    # /myproject/urls.py
-    from django.conf.urls import include, url
+    app_name = 'blog'
+    urlpatterns = [
+        path('', views.index, name='index'),
+    ]
+
+Now change the ```/myproject/urls.py``` so that the project knows which urls file to call
+
     from django.contrib import admin
-    from blog import views
+    from django.urls import path, include
 
     urlpatterns = [
-        url(r'^admin/', admin.site.urls),
-        url(r'^blogs/$', views.get_blogs, name='blogs') # Add this line
+        path('admin/', admin.site.urls),
+        path('blogs/', include('blog.urls', namespace='blogs')),
     ]
 
   - Run the django server using command:
@@ -90,17 +89,38 @@ Demonstration [01:30 | 06:22]
 -----------
 In the /blog/views.py edit get_blogs function
 
-    
+
+    from .models import Blog
+
+    def get_blogs(request):
+        blogs = Blog.objects.all() # This is called a django query
+        return HttpResponse(blogs)
+
+- Narrator Notes: Please state that Django queries will be explained later in the series.
+- Show the blog in the output created in previous tutorial
+
+- Let us append the url to the urlpatterns in ```blog/urls.py```
+
+
+        urlpatterns = [
+            .
+            path('get_blogs/', views.get_blogs, name='get_blogs'),
+        ]
+
+  - Go to the url http://localhost:8000/blogs/get_blogs and show the output.
+
+- Improving the output
+
     def get_blogs(request):
         blogs = Blog.objects.all() # This is called a query
-        response = 'Blogs:\n\n'
+        response = 'Blogs:'
         for blog in blogs:
-            response += '{0}\n'.format(blog)    
+            response += '<\ br> {0} '.format(blog)    
         return HttpResponse(response)
 
     - Narrator Notes: Should explain the above code.
     - Save and again show the browser.
-    - We now see the individual blog object created in tutorial 3.
+    - Show the blog in the output created in previous tutorial
 
 
 Demonstration [01:30 | 07:52]
@@ -108,15 +128,16 @@ Demonstration [01:30 | 07:52]
 Let us further edit the view to display articles related to a blog.
 In the /blog/views.py edit get_blogs function
 
+        from .models import Blog, Article
     
-    def get_blogs(request):
-        blogs = Blog.objects.all() # This is called a query
-        response = 'Blogs:\n\n'
-        for blog in blogs:
-            articles = Articles.objects.filter(blog=blog)
-            response += '{0}\n'.format(blog)
-            response += '\n'.join([article.title for article in articles])
-        return HttpResponse(response)
+        def get_blogs(request):
+            blogs = Blog.objects.all() # This is called a query
+            response = 'Blogs:'
+            for blog in blogs:
+                articles = Article.objects.filter(blog=blog)
+                response += '<br \> {0} '.format(blog)
+                response += ', '.join([article.title for article in articles])
+            return HttpResponse(response)
 
     - Narrator Notes: Should explain the above code.
     - Save and again show the browser.
