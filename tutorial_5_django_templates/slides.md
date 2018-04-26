@@ -54,7 +54,7 @@ Slide 5 [00:18 | 01:00]
     
 In this directory create an *blogs.html* file and add the below code
   
-    # /blog/templates/blog/blogs.html
+    # /blog/templates/blogs.html
     {% if articles %}
         <ul>
         {% for article in articles %}
