@@ -1,7 +1,7 @@
 Slide 1
 ------------
 Title Slide
-**Creating an Interface to view the Blog**
+**Using CSS and JavaScript in Django**
 
 Slide 2
 --------------
@@ -9,8 +9,8 @@ Slide 2
 **Learning Objectives**
 
 In this tutorial, we will learn to;
-  - Create a new view with custom queries
-  - Create an interface to view all blogs and articles
+  - Add CSS and JavaScript files
+  - Use them with the App
 
 Slide 3 [00:11 | 00:31]
 ---------------
@@ -26,176 +26,85 @@ Slide 4 [00:11 | 00:42]
 **Pre-requisites**
 
 In order to follow this tutorial, you need to know;
-  - how to create models in django
-  - how to write django queries
   - how to create templates
-  - how to write views
   - If not, see the relevant django tutorial on http://spoken-tutorial.org
   
 Slide 5:
 ----------------
 
-**Create a new View**
+**Static Files**
 
-- Modify the blog/views.py, modify the get_blogs view to display the Blog List of a particular user in a template
+  - CSS, JavaScript or Image files are referred as Static Files
+  - Conventionally they are stored in static folder
+  - Django will look for static files in the app static folder
 
-      def get_blogs(request, user):
-          user_object = User.object.get(username=user)
-          blogs = Blog.objects.filter(creator=user_object)
-          context = {'blogs': blogs}
-          return render(request, 'blog/index.html', context)
 
-Slide 6:
+Demonstration:
 ---------------------
 
-**Modify the blogs template**
+**Create a folder static in blogs directory**
 
-- Modify the template created previously, located at ```/blog/templates/blog/blogs.html``` to look like below
+        mkdir static
 
-       {% if blogs %}
-        <ul>
-          {% for blog in blogs %}
-             <li>{{ blog.name}}</li>
-                <ul>
-                {% for article in blog.article_set %}
-                    <li>{{ article.title }}</li>
-                {% endfor %}
-                </ul>
-          {% endfor %}
-        </ul>
-       {% else %}
-         <p>No Blogs are available.</p>
-       {% endif %}
+- Create blog folder inside static
 
-Slide 7:
+        cd static
+        mkdir blog
+
+- Create a base CSS file inside blog
+
+        cd blog
+        gedit blogs.css &
+
+
+Demonstration:
+---------------------
+**Add class to ul tag in blogs.html template**
+
+        <ul class="number">
+
+
+**Writing CSS in blogs.css**
+
+        ul.number {
+            list-style-type:upper-roman;
+        }
+
+
+Demonstration:
+-----------------------
+  - Visit http://localhost:8000/blogs/get_blogs/
+ 
+  - In output, we will see Roman Letters before a blog
+
+
+Demonstration:
+-----------------------
+
+**Create welcome.js in static/blog/ and add the below code**
+
+        function greet() {
+            alert("Welcome to the blog app!");
+        }
+
+**Modify blogs.html template as below**
+
+        <script src="{% static 'blog/welcome.js' %}"></script>
+        <body onload="greet()">
+
+Demonstration:
 ---------------------
 
-**Modify the URLs**
+**Show Output**
 
-- Modify the urls located in the ```myproject``` folder
+  - Visit http://localhost:8000/blogs/get_blogs/
+  - Refresh the page
 
-      # /myproject/urls.py
-      from django.conf.urls import include, url
-      from django.contrib import admin
-      from blog import urls
+  Output
 
-      urlpatterns = [
-          url(r'^admin/', admin.site.urls),
-          url(r'^blog/$', blog.urls) # Change this line
-      ]
+    - We will see the alert dialog popped up!
 
-- Modify the urls located in the ```blogs``` folder
+For script writer: Can create two folders as css and js to separate out css and js files in a directory.
+Also showing an image can be shown here if time permits or else can be give as a slide or an assignment
 
-      # /blogs/urls.py
-      from django.conf.urls import patterns, url
-      from blog import urls
-
-      urlpatterns = [
-          url(r'^(?P<username>\w+)/list/$', views.get_blogs, name='blogs')
-      ]
-      
-Slide 8
------------------------
-
-**Test the new view**
-
-- Activate the virtual environment
-- Run the Django test server using the command *python manage.py runserver*
-- Open the web browser and go to http://127.0.0.1:8000/blog/<username>/list
-  - Use the username created in Tutorial 3
-  
-Demonstration
------------------------
-
-*Note to Narrator: Demonstrate the new view in the browser to the viewer*
-
-Slide 9
------------------------
-
-**Add a view to Display Articles**
-
-- Modify the blog/views.py and add a new view to display a list of all the articles of a blog
-
-      def article(request, article_id):
-          articles = Article.objects.get(id=article_id)
-          context = {'article': article}
-          return render(request, 'blog/article.html', context)
-
-Slide 10a:
----------------------
-
-**Create a new template to display articles**
-
-- Create a template ```article.html``` at ```/blog/templates/blog/article.html``` to look like below
-
-      {% if article %}
-        <h1>{{ article.blog.name }}</h1>
-        <h2>Article Title: {{ article.title}}</h2>
-        <p><b><u>Created:</u></b>  {{ article.created_on }}<p>
-        <p>
-        {{ article.body}}
-        </p>
-      {% else %}
-        <p>No Articles are available for this blog.</p>
-      {% endif %}
-
-Slide 10b:
--------------------
-
-**Modify the blog template**
-
-- We need to add a link to each article in the blog list page ```/blog/templates/blog/blogs.html``` so that a user can view an articles
-
-      {% if blogs %}
-        <ul>
-        {% for blog in blogs %}
-            <li>{{ blog.name}}</li>
-                <ul>
-                {% for article in blog.article_set %}
-                    <li><a href='/blog/article/{{ article.id }}'>{{ article.title }}</a></li> /* Change this line here */
-                {% endfor %}
-                </ul>
-        {% endfor %}
-        </ul>
-      {% else %}
-        <p>No Blogs are available.</p>
-      {% endif %}
-
-Slide 11
--------------------------
-
-**Add URLs for articles_list**
-
-- We need to add a new URL in ```/blogs/urls.py``` which will point to the articles_list view.
-- When selecting a particular blog the URL should look like ```localhost:8000/blog/<blog_id>/articles```
-    - The URLs should be well designed so that the application is readable and easy to debug
-    - The views requires information such as the blog ID which needs to be passed using the URL
-    - This is called a GET request
-
-- Modify the urls located in ```blog``` folder
-
-      # /blogs/urls.py
-      from django.conf.urls import patterns, url
-      from blog import urls
-
-      urlpatterns = [
-          url(r'^(?P<username>\w+)/list/$', views.get_blogs, name='blogs')
-          url(r'^article/(?P<article_id>[0-9]+)$', views.article, name='article')
-      ]
-      
-Slide 12
------------------------
-
-**Test the new view**
-
-- Activate the virtual environment
-- Run the Django test server using the command *python manage.py runserver*
-- Open the web browser and go to http://127.0.0.1:8000/blog/<username>/list
-  - Use the username created in Tutorial 3
-- Now click on any one of the articles;
-  - You will be redirected to the new view and template that you just created.
-  
-Demonstration
------------------------
-
-*Note to Narrator: Demonstrate the new view in the browser to the viewer*
+**Concluding Slides**

@@ -55,6 +55,21 @@ Slide 5 [00:18 | 01:00]
 In this directory create an *blogs.html* file and add the below code
   
     # /blog/templates/blog/blogs.html
+
+        <html>
+        <body>
+        {% if blogs %}
+            <ul>
+            {% for blog in blogs %}
+                <li>{{ blog.name}} </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Blogs are available.</p>
+        {% endif %}
+        </body>
+        </html>
+
     {% if articles %}
         <ul>
         {% for article in articles %}
@@ -95,10 +110,10 @@ Now let's modify the blog/views.py as follows
     
     from .models import Blog, Article
 
-    def index(request):
-        article_list = Articles.objects.all()
-        context = {'article_list': article_list}
-        return render(request, 'blog/index.html', context)
+    def get_blogs(request):
+        blogs = Blog.objects.all()
+        context = {'blogs': blogs}
+        return render(request, 'blog/blogs.html', context)
 
   - Run the django server
   - Access the link localhost:8000/blogs/
