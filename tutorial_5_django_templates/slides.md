@@ -70,16 +70,6 @@ In this directory create an *blogs.html* file and add the below code
         </body>
         </html>
 
-    {% if articles %}
-        <ul>
-        {% for article in articles %}
-            <li>{{ article.title }} | Blog: {{ article.blog.name}}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No Blog articles are available.</p>
-    {% endif %}
-
   - We created a django template using an HTML file
   - The Django templates give the user limited programming logic capabilities like variables, if-else & for loops
 
