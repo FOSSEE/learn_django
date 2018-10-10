@@ -45,7 +45,7 @@ Demonstration
           password = forms.CharField(label="Password", max_length=30, 
                         widget=forms.PasswordInput(attrs={'name': 'password'}))
 
-**explain this in short, any complex concept then cna mention will be covered in the upcoming tutorials**
+**explain this in short, any complex concept then can mention will be covered in the upcoming tutorials**
 
 Demonstration
 ------------------
@@ -64,7 +64,7 @@ Demonstration
         </body>
         </html>
 
-**explain this in short, any complex concept then cna mention will be covered in the upcoming tutorials**
+**explain this in short, any complex concept then can mention will be covered in the upcoming tutorials**
 
 Demonstration
 ----------------
@@ -81,7 +81,8 @@ Demonstration
       urlpatterns = [
           path('admin/', admin.site.urls),
           path('blogs/', include('blog.urls', namespace='blog')),
-          path('login/', auth_views.login, {'template_name': 'blog/login.html',                'authentication_form': LoginForm}, name='login'), # Add this line
+          path('login/', auth_views.login, {'template_name': 'blog/login.html',
+               'authentication_form': LoginForm}, name='login'), # Add this line
       ]
 
 **explain this**
@@ -106,6 +107,7 @@ Demonstration
 - This is called a decorator.
 - It is a special function and a built-in feature in django that allows you to verify if the current session of the User is authenticated.
 - In case the user is not logged in / authenticated, the user is redirected to the link specified in the variable ```login_url```
+- Note: There is a setting for LOGIN_URL available(You may use this instead!)
 
 Example:
 
@@ -116,7 +118,7 @@ Example:
           ...
 
 
-At this point, run the server and show login demo using the super user credentials
+At this point, run the server and show login demo using the super user credentials.
 You can visit page ```http://localhost:8000/blogs/get_blogs/``` and show the demo
 
 
@@ -129,25 +131,27 @@ Demonstration
 
       # myproject/urls.py
 
-      from django.conf.urls import include, url
       from django.contrib import admin
-      from blog import views
-      from django.contrib.auth import views as auth_views
+      from django.urls import path, include
+      from django.contrib.auth import views as auth_views # Add this import
       from blog.forms import LoginForm
 
       urlpatterns = [
-          url(r'^admin/', admin.site.urls),
-          url(r'^blogs/$', include('blogs.urls')),
-          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='logout'),
-          url(r'^logout/$', auth_views.logout, {'next_page': '/login'}, name='logout'), # Add this line
+        path('admin/', admin.site.urls),
+        path('blogs/', include('blog.urls', namespace='blog')),
+        path('login/', auth_views.login, {'template_name': 'blog/login.html',
+             'authentication_form': LoginForm}, name='login'), # Add this line
+        path('logout/', auth_views.logout, {'next_page': '/login'},
+             name='logout'), # Add this line
       ]
-      
+
+
 Demonstration
 ---------------------
 
 - Add a link to the ```/logout``` url to the template blogs.html as following:
 
-    <p><a href="{% url 'logout' %}">Logout</a></p>
+      <p><a href="{% url 'logout' %}">Logout</a></p>
 
 At this point, run the server and show logout demo, as well as login and logout demo again in different ways.
 For example:
