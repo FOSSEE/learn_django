@@ -26,60 +26,7 @@ Slide 4:
 **Introduction**
 
 - Let us use our knowledge of forms and templates to create a login system for our blog application
-- We will use Django's inbuilt authentication system for this.
-
-Demonstration
-----------------
-
-**Modify the urls.py**
-
-- Modify the urls.py file located in the ```myproject``` folder
-
-
-      from django.conf.urls import include, url
-      from django.contrib import admin
-      from blog import views
-      from django.contrib.auth import views as auth_views # Add this import
-
-
-      urlpatterns = [
-          url(r'^admin/', admin.site.urls),
-          url(r'^blogs/$', include('blogs.urls')),
-          url(r'^login/$', auth_views.login, {'template_name': 'login.html'}), # Add this line
-      ]
-
-Demonstration
-------------------
-
-**Create a new template*
-
-- Create a template ```login.html``` at ```/blog/templates/blog/login.html``` to look like below
-
-        <html>
-        <body>
-            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-                {% csrf_token %}
-                <p class="bs-component">
-                    <table>
-                        <tr>
-                            <td>{{ form.username.label_tag }}</td>
-                            <td>{{ form.username }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ form.password.label_tag }}</td>
-                            <td>{{ form.password }}</td>
-                        </tr>
-                    </table>
-                </p>
-                <p class="bs-component">
-                    <center>
-                        <input class="btn btn-success btn-sm" type="submit" value="login" />
-                    </center>
-                </p>
-                <input type="hidden" name="next" value="{{ next }}" />
-            </form>
-        </body>
-        </html>
+- We will use Django's built-in authentication system for this.
 
 Demonstration
 ------------------
@@ -94,38 +41,68 @@ Demonstration
 
       class LoginForm(AuthenticationForm):
           username = forms.CharField(label="Username", max_length=30, 
-                                   widget=forms.TextInput(attrs={'name': 'username'}))
+                        widget=forms.TextInput(attrs={'name': 'username'}))
           password = forms.CharField(label="Password", max_length=30, 
-                                   widget=forms.TextInput(attrs={'name': 'password'}))
+                        widget=forms.PasswordInput(attrs={'name': 'password'}))
 
+**explain this in short, any complex concept then cna mention will be covered in the upcoming tutorials**
+
+Demonstration
+------------------
+
+**Create a new template**
+
+- Create a template ```login.html``` at ```/blog/templates/blog/login.html``` to look like below
+
+        <html>
+        <body>
+          <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="login" />
+          </form>
+        </body>
+        </html>
+
+**explain this in short, any complex concept then cna mention will be covered in the upcoming tutorials**
+
+Demonstration
+----------------
+
+**Modify the urls.py**
+
+- Modify the urls.py file located in the ```myproject``` folder
+
+
+      from django.contrib import admin
+      from django.urls import path, include
+      from django.contrib.auth import views as auth_views # Add this import
+
+      urlpatterns = [
+          path('admin/', admin.site.urls),
+          path('blogs/', include('blog.urls', namespace='blog')),
+          path('login/', auth_views.login, {'template_name': 'blog/login.html',                'authentication_form': LoginForm}, name='login'), # Add this line
+      ]
+
+**explain this**
 
 Demonstration
 --------------------
 
-**Add the form to the URL configuration**
+**Modify settings.py**
 
-- We will now add the form that we just created to the URL configuration of ```/login``` URL
+- Add the following:
 
-      # myproject/urls.py
+        LOGIN_REDIRECT_URL = '/blogs/get_blogs/'
 
-      from django.conf.urls import include, url
-      from django.contrib import admin
-      from blog import views
-      from django.contrib.auth import views as auth_views
-      from blog.forms import LoginForm
-
-      urlpatterns = [
-          url(r'^admin/', admin.site.urls),
-          url(r'^blogs/$', include('blogs.urls')),
-          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}}), # Add this variable 'authentication_form'
-      ]
+**explain this**
 
 Demonstration
 --------------------
 
 **Modifying the views**
 
-- You will have to add this line ```@login_required(login_url="login/")``` above all the function in the ```views.py```
+- You will have to add this line ```@login_required(login_url="/login/")``` above all the function in the ```views.py```
 - This is called a decorator.
 - It is a special function and a built-in feature in django that allows you to verify if the current session of the User is authenticated.
 - In case the user is not logged in / authenticated, the user is redirected to the link specified in the variable ```login_url```
@@ -134,9 +111,14 @@ Example:
 
       # blog/views.py
 
-      @login_required(login_url="login/")
-      def get_blogs(request, username):
+      @login_required(login_url="/login/")
+      def get_blogs(request):
           ...
+
+
+At this point, run the server and show login demo using the super user credentials
+You can visit page ```http://localhost:8000/blogs/get_blogs/``` and show the demo
+
 
 Demonstration
 ---------------------
@@ -156,14 +138,21 @@ Demonstration
       urlpatterns = [
           url(r'^admin/', admin.site.urls),
           url(r'^blogs/$', include('blogs.urls')),
-          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}}),
-          url(r'^logout/$', auth_views.logout, {'next_page': '/login'}), # Add this line
+          url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='logout'),
+          url(r'^logout/$', auth_views.logout, {'next_page': '/login'}, name='logout'), # Add this line
       ]
       
 Demonstration
 ---------------------
 
-- Add a link to the ```/logout``` url to the templates
+- Add a link to the ```/logout``` url to the template blogs.html as following:
+
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+
+At this point, run the server and show logout demo, as well as login and logout demo again in different ways.
+For example:
+1. We can show http://localhost:8000/blogs/get_blogs/ and it reditrects to login page if user is not authenticated, else we see the blogs
+2. We can show http://localhost:8000/login/ and demonstrate login and redirects!
 
 **Concluding and Assignment Slides**
 
